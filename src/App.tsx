@@ -7,11 +7,16 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 
 function App() {
-  const [pageView, setPageView] = useState('home')
+  const [pageView, setPageView] = useState('home');
+  const [activeUser, setActiveUser] = useState(null);
 
   return (
     <>
-      <Header page={pageView} setPageView={setPageView} />
+      <Header 
+        page={pageView} 
+        user={activeUser} 
+        setPageView={setPageView}
+      />
       {pageView === 'home' && <Home />}
       {pageView === 'favorites' && <Favorites />}
       {pageView === 'account' && <AccountForms />}

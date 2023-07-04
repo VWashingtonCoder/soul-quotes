@@ -1,14 +1,14 @@
+import { User } from "../../types"
+
 type HeaderProps = {
     page: string,
-    setPageView: (page: string) => void
+    user: User | null
+    setPageView: (page: string) => void,
 }
 
-export default function Header({ page, setPageView }: HeaderProps) {
-    console.log(page)
-    
-    const handlePageChange = (page: string) => {
-        setPageView(page)
-    }
+export default function Header({ page, user, setPageView }: HeaderProps) {
+    console.log(`page: ${page}`)
+    console.log(user);
     
     return (
         <>
