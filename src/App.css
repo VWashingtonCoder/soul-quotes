@@ -13,10 +13,11 @@
   padding-right: 100px;
 }
 
+/*NavLinks*/
 .nav-links {
- display: flex;
- justify-content: space-between;
- width: 57%;
+  display: flex;
+  justify-content: space-between;
+  width: 57%;
 }
 
 .nav-btn {

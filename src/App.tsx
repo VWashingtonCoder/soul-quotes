@@ -1,55 +1,53 @@
-import './App.css';
-import { useState } from 'react';
-import { User } from './types';
-import AccountForms from './components/AccountForms/AccountForms';
-import CreateQuote from './components/CreateQuote/CreateQuote';
-import Favorites from './components/Favorites/Favorites';
-import NavLinks from './components/NavLinks/NavLinks';
-import Home from './components/Home/Home';
+import "./App.css";
+import { useState } from "react";
+import { User } from "./types";
+import AccountForms from "./components/AccountForms/AccountForms";
+import CreateQuote from "./components/CreateQuote/CreateQuote";
+import Favorites from "./components/Favorites/Favorites";
+import NavLinks from "./components/NavLinks/NavLinks";
+import Home from "./components/Home/Home";
 
 const testUser = {
   id: 0,
   userId: "testUser",
-  username: 'testUser',
+  username: "testUser",
   email: "testuser@ex.com",
-  password: 'testPassword',
-}
-
-
+  password: "testPassword",
+};
 
 function App() {
-  const [pageView, setPageView] = useState('home');
+  const [pageView, setPageView] = useState("home");
   const [activeUser, setActiveUser] = useState(testUser);
 
   const removeActiveUser = () => {
     const noUser = {
       id: 0,
       userId: "",
-      username: '',
+      username: "",
       email: "",
-      password: '',
-    }
+      password: "",
+    };
     setActiveUser(noUser);
-    setPageView('home');
-  }
+    setPageView("home");
+  };
 
   return (
     <>
-      <header className='app-header'>
-        <NavLinks 
-          page={pageView} 
-          user={activeUser} 
+      <header className="app-header">
+        <NavLinks
+          page={pageView}
+          user={activeUser}
           setPageView={setPageView}
           removeUser={removeActiveUser}
         />
       </header>
-      
-      {pageView === 'home' && <Home />}
-      {pageView === 'favorites' && <Favorites />}
-      {pageView === 'account' && <AccountForms />}
-      {pageView === 'create' && <CreateQuote />}
+
+      {pageView === "home" && <Home />}
+      {pageView === "favorites" && <Favorites />}
+      {pageView === "account" && <AccountForms />}
+      {pageView === "create" && <CreateQuote />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
