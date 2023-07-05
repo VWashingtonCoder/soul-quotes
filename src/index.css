@@ -141,6 +141,24 @@ table {
 
 /* Custom */
 body {
-  background-image: url("../assets/appBg.png");
+  background-image: url("./assets/images/appBg.png");
   background-size: 110%;
+}
+
+section {
+  max-width: 1280px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  color: cornflowerblue;
 }
