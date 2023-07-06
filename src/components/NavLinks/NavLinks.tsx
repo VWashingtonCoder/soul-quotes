@@ -1,10 +1,9 @@
+import { useUserContext } from "../../hooks/CustomUseHooks";
 import { User } from "../../types";
 
 type NavProps = {
   page: string;
-  user: User;
-  setPageView: (page: string) => void;
-  removeUser: () => void;
+  changePage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const navLinks = [
@@ -14,16 +13,17 @@ const navLinks = [
   { key: "create", text: "Create" },
 ];
 
-export default function NavLinks(props: NavProps) {
-  const { page, user, setPageView, removeUser } = props;
-  const { userId } = user;
+export default function NavLinks({ page, changePage }: NavProps) {
+  const { activeUser, setActiveUser } = useUserContext();
+  const { userId } = activeUser as User;
 
   const handlePageChange = (page: string) => {
     if (!userId && (page === "favorites" || page === "create")) {
       alert("You must be logged in to view this page.");
     } else if (userId && page === "account") {
-      removeUser();
-    } else setPageView(page);
+      setActiveUser({});
+      changePage("home");
+    } else changePage(page);
   };
 
   return (

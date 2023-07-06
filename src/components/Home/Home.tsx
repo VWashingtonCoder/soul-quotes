@@ -1,7 +1,12 @@
+import QuoteCard from "../QuoteCard/QuoteCard"
+import { getUsers } from "../../api/api-actions"
+
 export default function Home() {
+    
+    
     return (
-        <>
-            <h1>SoulQuotes Home</h1>
-        </>
+        <div className="home">
+            <QuoteCard />
+        </div>
     )
 }
