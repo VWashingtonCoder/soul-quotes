@@ -14,14 +14,14 @@ const navLinks = [
 ];
 
 export default function NavLinks({ page, changePage }: NavProps) {
-  const { activeUser, setActiveUser } = useUserContext();
+  const { activeUser, removeActiveUser } = useUserContext();
   const { userId } = activeUser as User;
 
   const handlePageChange = (page: string) => {
     if (!userId && (page === "favorites" || page === "create")) {
       alert("You must be logged in to view this page.");
     } else if (userId && page === "account") {
-      setActiveUser({});
+      removeActiveUser();
       changePage("home");
     } else changePage(page);
   };

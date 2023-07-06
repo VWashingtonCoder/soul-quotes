@@ -4,22 +4,34 @@ import { getUsers } from "../api/api-actions";
 
 export type UserContextType = {
   users: User[];
-  activeUser: User | object;
-  setActiveUser: React.Dispatch<React.SetStateAction<User | object>>;
+  activeUser: User;
+  removeActiveUser: () => void;
 };
 
 export const UserContext = createContext<UserContextType | object>({});
 
-export const UserProvider = ({ children }: ChildrenProps) => {
-  const testUser = {
+const testUser = {
     id: 0,
     userId: "testUser",
     username: "testUser",
     email: "testuser@ex.com",
     password: "testPassword",
   };
+  const noUser = {
+    id: 0,
+    userId: "",
+    username: "",
+    email: "",
+    password: "",
+  };
+
+export const UserProvider = ({ children }: ChildrenProps) => {
   const [users, setUsers] = useState([]);
   const [activeUser, setActiveUser] = useState(testUser);
+
+  const removeActiveUser = () => {
+    setActiveUser(noUser);
+  };
 
   useEffect(() => {
     getUsers().then((users) => setUsers(users));
@@ -28,7 +40,7 @@ export const UserProvider = ({ children }: ChildrenProps) => {
   const providerValue = {
     users,
     activeUser,
-    setActiveUser,
+    removeActiveUser,
   };
 
   return (
