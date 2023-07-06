@@ -6,7 +6,7 @@ import Favorites from "./components/Favorites/Favorites";
 import NavLinks from "./components/NavLinks/NavLinks";
 import Home from "./components/Home/Home";
 
-function App() {;
+function App() {
   const [pageView, setPageView] = useState("home");
 
   return (
