@@ -31,7 +31,6 @@ export default function NavLinks({ page, changePage }: NavProps) {
       {navLinks.map((link) => {
         const { key } = link;
         const btnText = key === "account" && userId ? "Logout" : link.text;
-
         return (
           <button
             key={key}

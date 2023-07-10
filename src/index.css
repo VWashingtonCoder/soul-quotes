@@ -148,6 +148,7 @@ body {
 section {
   max-width: 1500px;
   margin: auto;
+  margin-top: 175px;
 }
 
 img {
