@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { ChildrenProps, Quote } from "../types";
-import { getQuotes } from "../api/api-actions";
+import { getQuotes } from "../api/Quotes-api-actions";
 
 export type QuoteContextType = {
   quotes: Quote[] | [];

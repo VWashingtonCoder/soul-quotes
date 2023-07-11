@@ -25,6 +25,6 @@ export interface ChildrenProps {
   children: React.ReactNode;
 }
 
-export interface FormValues {
+export interface FormValuesErrors {
   [key: string]: string;
 }

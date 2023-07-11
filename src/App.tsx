@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import AccountForms from "./components/AccountForms/AccountForms";
+import JoinForm from "./components/JoinForm/JoinForm";
+import LoginForm from "./components/LoginForm/LoginForm";
 import CreateQuote from "./components/CreateQuote/CreateQuote";
 import Favorites from "./components/Favorites/Favorites";
 import NavLinks from "./components/NavLinks/NavLinks";
@@ -16,7 +17,13 @@ function App() {
       </header>
 
       {pageView === "home" && <Home />}
-      {pageView === "account" && <AccountForms />}
+      {pageView === "account" && (
+        <section className="page accounts flex-align-center">
+          <JoinForm />
+          {/* <LoginForm /> */}
+        </section>
+      )
+      }
       {pageView === "favorites" && <Favorites />}
       {pageView === "create" && <CreateQuote />}
     </>
