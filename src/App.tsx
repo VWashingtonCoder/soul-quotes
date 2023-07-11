@@ -18,12 +18,12 @@ function App() {
 
       {pageView === "home" && <Home />}
       {pageView === "account" && (
-        <section className="page accounts flex-align-center">
+        <section className="accounts">
           <JoinForm />
-          {/* <LoginForm /> */}
+          <h2>- OR -</h2>
+          <LoginForm changePage={setPageView} />
         </section>
-      )
-      }
+      )}
       {pageView === "favorites" && <Favorites />}
       {pageView === "create" && <CreateQuote />}
     </>

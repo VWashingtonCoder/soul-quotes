@@ -42,3 +42,9 @@
   background-color: darkmagenta;
   border-radius: 0.25rem;
 }
+
+.accounts {
+  display: flex;
+  justify-content: space-between;
+  max-width: 75%;
+}

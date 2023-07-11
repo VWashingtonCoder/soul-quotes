@@ -15,24 +15,28 @@ const joinFormInputs = [
     id: "username",
     label: "Username",
     type: "text",
+    placeholder: "Enter A Username",
   },
   {
     key: "join-email",
     id: "email",
     label: "Email",
     type: "email",
+    placeholder: "Enter An Email",
   },
   {
     key: "join-password",
     id: "password",
     label: "Password",
     type: "password",
+    placeholder: "Enter A Password",
   },
   {
     key: "join-confirm-password",
     id: "confirmPassword",
     label: "Confirm Password",
     type: "password",
+    placeholder: "Confirm Your Password",
   },
 ];
 
@@ -44,9 +48,11 @@ const initialFormValues = {
 } as FormValuesErrors;
 
 export default function JoinForm() {
-  const { users, addNewUser, checkForExistingUser } = useUserContext();
+  const { users, addNewUser, checkForExistingEmail, checkForExistingUserId } =
+    useUserContext();
   const [formValues, setFormValues] = useState(initialFormValues);
   const [error, setError] = useState({} as FormValuesErrors);
+  const errorsArray = Object.keys(error);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -59,52 +65,46 @@ export default function JoinForm() {
 
     if (valid) {
       const { username, email, password } = formValues;
-      const newUser = {
-        id: users.length + 1,
-        userId: username,
-        username: username,
-        email: email,
-        password: password,
-      };
-      if (!checkForExistingUser(newUser)) {
-        addNewUser(newUser);
+      if (!checkForExistingUserId(username) && !checkForExistingEmail(email)) {
+        addNewUser({
+          id: users.length + 1,
+          userId: username,
+          username: username,
+          email: email,
+          password: password,
+        });
         setFormValues(initialFormValues);
         alert(`Welcome to the community ${username}!`);
       } else errors.user = "Username or email already exists";
     }
+
     setError(errors);
   };
   return (
     <form className="account-form join" onSubmit={handleSubmit}>
       <h2>Join Our Wonderful Quote Community</h2>
-      {Object.keys(error).length > 0 && (
-        <div className="error-box">
-          <p>There were errors with your submission: </p>
+      {errorsArray.length > 0 && (
+        <div className="error-container">
+          <p className="error-message">
+            There were errors with your submission:{" "}
+          </p>
           <ul className="error-list">
-            {Object.keys(error).map((key) => (
+            {errorsArray.map((key) => (
               <li key={key}>{error[key]}</li>
             ))}
           </ul>
         </div>
       )}
 
-      {}
-
-      {joinFormInputs.map((input) => {
-        const { id, key, label, type } = input;
-
-        return (
-          <FormInputBase
-            key={key}
-            id={id}
-            label={label}
-            type={type}
-            value={formValues[id]}
-            change={handleInputChange}
-          />
-        );
-      })}
-      <input type="submit" />
+      {joinFormInputs.map((input) => (
+        <FormInputBase
+          key={input.key}
+          input={input}
+          value={formValues[input.id]}
+          change={handleInputChange}
+        />
+      ))}
+      <input className="submit-btn" type="submit" />
     </form>
   );
 }

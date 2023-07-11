@@ -6,7 +6,9 @@ export type UserContextType = {
   users: User[];
   activeUser: User;
   addNewUser: (user: User) => void;
-  checkForExistingUser: (user: User) => boolean;
+  checkForExistingUserId: (userId: string) => boolean;
+  checkForExistingEmail: (email: string) => boolean;
+  loginActiveUser: (user: User) => void;
   removeActiveUser: () => void;
 };
 
@@ -31,21 +33,29 @@ export const UserProvider = ({ children }: ChildrenProps) => {
   const [users, setUsers] = useState([] as User[]);
   const [activeUser, setActiveUser] = useState(testUser);
 
-  function checkForExistingUser(user: User) {
-    const existingUserId = users.find((u) => u.userId === user.userId);
-    const existingEmail = users.find((u) => u.email === user.email);
-    if (existingUserId || existingEmail) return true;
+  function checkForExistingUserId(userId: string) {
+    const existingUser = users.find((u) => u.userId === userId);
+    if (existingUser) return true;
     else return false;
   }
 
-  const getAllUsers = () => { 
-    getUsers().then((users) => setUsers(users)) 
+  function checkForExistingEmail(email: string) {
+    const existingEmail = users.find((u) => u.email === email);
+    if (existingEmail) return true;
+    else return false;
+  }
+
+  const getAllUsers = () => {
+    getUsers().then((users) => setUsers(users));
   };
 
   const addNewUser = (user: User) => {
-    console.log("Adding new user");
-    console.log(user);
     addUser(user).then(() => getAllUsers());
+  };
+
+  const loginActiveUser = (user: User) => {
+    setActiveUser(user);
+    window.localStorage.setItem("activeUser", JSON.stringify(user));
   };
 
   const removeActiveUser = () => {
@@ -54,14 +64,16 @@ export const UserProvider = ({ children }: ChildrenProps) => {
   };
 
   useEffect(() => {
-    getAllUsers()
+    getAllUsers();
   }, []);
 
   const providerValue = {
     users,
     activeUser,
     addNewUser,
-    checkForExistingUser,
+    checkForExistingEmail,
+    checkForExistingUserId,
+    loginActiveUser,
     removeActiveUser,
   };
 
