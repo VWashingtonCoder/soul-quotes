@@ -1,7 +1,11 @@
+import JoinForm from "./JoinForm/JoinForm";
+import LoginForm from "./LoginForm/LoginForm";
+
 export default function AccountForms() {
     return (
-        <>
-            <h1>SoulQuotes AccountForms</h1>
-        </>
+        <section className="page accounts flex-align-center">
+            <JoinForm />
+            {/* <LoginForm /> */}
+        </section>
     )
 }

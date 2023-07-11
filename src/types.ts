@@ -24,3 +24,7 @@ export interface Favorite {
 export interface ChildrenProps {
   children: React.ReactNode;
 }
+
+export interface FormValues {
+  [key: string]: string;
+}

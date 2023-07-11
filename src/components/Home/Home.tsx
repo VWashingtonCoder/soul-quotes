@@ -76,6 +76,7 @@ export default function Home() {
           const quote = data as Quote;
           return (
             <QuoteCard
+              key={quote.id}
               quoteData={quote}
               idx={idx}
               changeOne={changeOneActiveQuote}

@@ -16,8 +16,8 @@ function App() {
       </header>
 
       {pageView === "home" && <Home />}
-      {pageView === "favorites" && <Favorites />}
       {pageView === "account" && <AccountForms />}
+      {pageView === "favorites" && <Favorites />}
       {pageView === "create" && <CreateQuote />}
     </>
   );
