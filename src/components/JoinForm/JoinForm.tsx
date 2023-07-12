@@ -1,8 +1,9 @@
 import { useState } from "react";
-import FormInputBase from "../FormInputBase/FormInputBase";
 import { FormValuesErrors } from "../../types";
 import { validateForm } from "../../validators/form-validators";
 import { useUserContext } from "../../hooks/CustomUseHooks";
+import FormInputBase from "../FormInputBase/FormInputBase";
+import FormErrors from "../FormErrors/FormErrors";
 
 type ValidForm = {
   valid: boolean;
@@ -51,12 +52,18 @@ export default function JoinForm() {
   const { users, addNewUser, checkForExistingEmail, checkForExistingUserId } =
     useUserContext();
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [error, setError] = useState({} as FormValuesErrors);
-  const errorsArray = Object.keys(error);
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({} as FormValuesErrors);
+  const errorsArray = Object.values(errors);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormValues({ ...formValues, [id]: value });
+  };
+
+  const handleShowPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,32 +85,29 @@ export default function JoinForm() {
       } else errors.user = "Username or email already exists";
     }
 
-    setError(errors);
+    setErrors(errors);
   };
   return (
     <form className="account-form join" onSubmit={handleSubmit}>
-      <h2>Join Our Wonderful Quote Community</h2>
+      <h2 className="form-title">Join Our Wonderful Quote Community</h2>
+
+      <div className="form-body">
+        {joinFormInputs.map((input) => (
+          <FormInputBase
+            key={input.key}
+            input={input}
+            value={formValues[input.id]}
+            change={handleInputChange}
+            showPassword={showPassword}
+            showPasswordClick={handleShowPassword}
+          />
+        ))}
+      </div>
+
       {errorsArray.length > 0 && (
-        <div className="error-container">
-          <p className="error-message">
-            There were errors with your submission:{" "}
-          </p>
-          <ul className="error-list">
-            {errorsArray.map((key) => (
-              <li key={key}>{error[key]}</li>
-            ))}
-          </ul>
-        </div>
+        <FormErrors errors={errorsArray} formKey="join" />
       )}
 
-      {joinFormInputs.map((input) => (
-        <FormInputBase
-          key={input.key}
-          input={input}
-          value={formValues[input.id]}
-          change={handleInputChange}
-        />
-      ))}
       <input className="submit-btn" type="submit" />
     </form>
   );

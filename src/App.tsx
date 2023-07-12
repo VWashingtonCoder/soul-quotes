@@ -17,13 +17,15 @@ function App() {
       </header>
 
       {pageView === "home" && <Home />}
+
       {pageView === "account" && (
         <section className="accounts">
           <JoinForm />
-          <h2>- OR -</h2>
+          <h2 className="operator">- OR -</h2>
           <LoginForm changePage={setPageView} />
         </section>
       )}
+
       {pageView === "favorites" && <Favorites />}
       {pageView === "create" && <CreateQuote />}
     </>

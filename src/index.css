@@ -143,6 +143,7 @@ table {
 body {
   background-image: url("./assets/images/appBg.png");
   background-size: 110%;
+  max-height: 90vh;
 }
 
 section {
