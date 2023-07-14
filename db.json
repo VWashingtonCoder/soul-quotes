@@ -432,7 +432,7 @@
       "quote": "I think God, in creating man, somewhat overestimated his ability.",
       "author": "Oscar Wilde",
       "category": "funny",
-      "creatorId": "admin-1"
+      "creatorId": "testUser3"
     }
   ],
   "favorites": [
@@ -440,6 +440,11 @@
       "id": 1,
       "userId": "admin-1",
       "quoteId": "success-1"
+    },
+    {
+      "id": 2,
+      "userId": "testUser3",
+      "quoteId": "funny-10"
     }
   ]
 }

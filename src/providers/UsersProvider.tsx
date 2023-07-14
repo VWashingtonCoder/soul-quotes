@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { ChildrenProps, User } from "../types";
-import { getUsers, addUser } from "../api/Users-api-actions";
+import { getUsers, addUser } from "../api/api-actions";
 
 export type UserContextType = {
   users: User[];
@@ -14,19 +14,20 @@ export type UserContextType = {
 
 export const UserContext = createContext<UserContextType | object>({});
 
-const testUser = {
-  id: 0,
-  userId: "testUser",
-  username: "testUser",
-  email: "testuser@ex.com",
-  password: "testPassword",
-};
 const noUser = {
   id: 0,
   userId: "",
   username: "",
   email: "",
   password: "",
+};
+
+const testUser = {
+  id: 1,
+  userId: "testUser3",
+  username: "testUser3",
+  email: "tu3@ex.com",
+  password: "Password3",
 };
 
 export const UserProvider = ({ children }: ChildrenProps) => {
@@ -74,7 +75,7 @@ export const UserProvider = ({ children }: ChildrenProps) => {
     checkForExistingEmail,
     checkForExistingUserId,
     loginActiveUser,
-    removeActiveUser,
+    removeActiveUser
   };
 
   return (

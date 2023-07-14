@@ -51,7 +51,6 @@ export default function LoginForm({ changePage }: LoginProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Login form submitted");
-    console.log(formValues);
     const { valid, errors } = validateForm(formValues);
 
     if (valid) {
