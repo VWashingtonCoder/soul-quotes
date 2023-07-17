@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import { Favorite, Quote } from "../../types";
 
 export default function Favorites() {
-  const { activeUser, userFavoriteQuotes } = useAppContext();
-
-  console.log(activeUser);
+  const { userFavoriteQuotes } = useAppContext();
   console.log(userFavoriteQuotes);
 
   return (

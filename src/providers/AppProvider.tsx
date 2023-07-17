@@ -34,9 +34,8 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     const localUser = window.localStorage.getItem("activeUser");
 
     if (localUser) {
-      setActiveUser(JSON.parse(localUser));
-      return true;
-    } else return false;
+      return JSON.parse(localUser);
+    } else return null;
   };
 
   const checkForExistingUserId = (userId: string) => {
@@ -51,10 +50,12 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     else return false;
   };
 
-  const getActiveUserQuotes = (favorites: Favorite[]) => {
+  const getActiveUserQuotes = (favorites: Favorite[], user: User) => {
+    if (!user.userId) return;
+
     const activeUserQuoteIds = [] as string[];
     const activeUserFavorites = favorites.filter(
-      (favorite: Favorite) => favorite.userId === activeUser.userId
+      (favorite: Favorite) => favorite.userId === user.userId
     );
 
     activeUserFavorites.forEach((favorite: Favorite) =>
@@ -87,17 +88,18 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   };
 
   useEffect(() => {
+    const user = checkForExistingLocalUser();
+    if (user) setActiveUser(user);
+
     getQuotes().then((quotes) => {
       setQuotes(quotes);
+      getAllUsers();
     });
 
-    getAllUsers();
-
-    if (checkForExistingLocalUser()) {
-      getFavorites().then((favorites) => {
-        getActiveUserQuotes(favorites);
-      });
-    }
+    getFavorites().then((favorites) => {
+      const userProp = user ? user : noUser;
+      getActiveUserQuotes(favorites, userProp);
+    });
   }, []);
 
   const providerValue = {
