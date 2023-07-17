@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useQuoteContext } from "../../hooks/CustomUseHooks";
+import { useAppContext } from "../../hooks/CustomUseHooks";
 import { Quote } from "../../types";
 import { CategorySelect } from "../CategorySelect/CategorySelect";
 import QuoteCard from "../QuoteCard/QuoteCard";
 import "./Home.css";
 
 export default function Home() {
-  const { quotes } = useQuoteContext();
+  const { quotes } = useAppContext();
   const [activeQuotes, setActiveQuotes] = useState({});
   const [searchCategory, setSearchCategory] = useState("all");
   const [searchQuotes, setSearchQuotes] = useState(quotes);

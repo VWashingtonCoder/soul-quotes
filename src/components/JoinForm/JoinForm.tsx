@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormValuesErrors } from "../../types";
 import { validateForm } from "../../validators/form-validators";
-import { useUserContext } from "../../hooks/CustomUseHooks";
+import { useAppContext } from "../../hooks/CustomUseHooks";
 import FormInputBase from "../FormInputBase/FormInputBase";
 import FormErrors from "../FormErrors/FormErrors";
 
@@ -50,7 +50,7 @@ const initialFormValues = {
 
 export default function JoinForm() {
   const { users, addNewUser, checkForExistingEmail, checkForExistingUserId } =
-    useUserContext();
+    useAppContext();
   const [formValues, setFormValues] = useState(initialFormValues);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({} as FormValuesErrors);

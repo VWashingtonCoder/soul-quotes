@@ -1,5 +1,5 @@
 import { Quote } from "../../types";
-import { useUserContext } from "../../hooks/CustomUseHooks";
+import { useAppContext } from "../../hooks/CustomUseHooks";
 import { TfiReload } from "react-icons/tfi";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
@@ -16,7 +16,7 @@ export default function QuoteCard({
   changeOne,
 }: QuoteCardProps) {
   const { quoteId, quote, category, author, creatorId } = quoteData;
-  const { userId } = useUserContext().activeUser;
+  const { userId } = useAppContext().activeUser;
   const favorite = false;
   return (
     <div className="quote-card" key={quoteId}>

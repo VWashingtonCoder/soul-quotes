@@ -1,11 +1,6 @@
 import { useContext } from "react";
-import { UserContextType, UserContext } from "../providers/UsersProvider";
-import { QuoteContextType, QuoteContext } from "../providers/QuoteProvider";
+import { AppContext, AppContextType } from "../providers/AppProvider";
 
-export const useUserContext = () => {
-    return useContext(UserContext) as UserContextType;
-}
-
-export const useQuoteContext = () => {
-    return useContext(QuoteContext) as QuoteContextType;
-}
+export const useAppContext = () => {
+  return useContext(AppContext) as AppContextType;
+};

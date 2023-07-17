@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  ["id"]: number;
   userId: string;
   username: string;
   email: string;
@@ -7,7 +7,7 @@ export interface User {
 }
 
 export interface Quote {
-  id: number;
+  ["id"]: number;
   quoteId: string;
   quote: string;
   author: string;
@@ -16,7 +16,7 @@ export interface Quote {
 }
 
 export interface Favorite {
-  id: number;
+  ["id"]: number;
   userId: string;
   quoteId: string;
 }

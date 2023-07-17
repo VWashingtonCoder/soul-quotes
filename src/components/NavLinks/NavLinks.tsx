@@ -1,4 +1,4 @@
-import { useUserContext } from "../../hooks/CustomUseHooks";
+import { useAppContext } from "../../hooks/CustomUseHooks";
 import { User } from "../../types";
 
 type NavProps = {
@@ -14,7 +14,7 @@ const navLinks = [
 ];
 
 export default function NavLinks({ page, changePage }: NavProps) {
-  const { activeUser, removeActiveUser } = useUserContext();
+  const { activeUser, removeActiveUser } = useAppContext();
   const { userId } = activeUser as User;
 
   const handlePageChange = (page: string) => {

@@ -1,11 +1,10 @@
 import { CategorySelect } from "../CategorySelect/CategorySelect";
-import { useQuoteContext, useUserContext } from "../../hooks/CustomUseHooks";
+import { useAppContext } from "../../hooks/CustomUseHooks";
 import { useState, useEffect } from "react";
 import { Favorite, Quote } from "../../types";
 
 export default function Favorites() {
-  const { activeUser } = useUserContext();
-  const { userFavoriteQuotes } = useQuoteContext();
+  const { activeUser, userFavoriteQuotes } = useAppContext();
 
   console.log(activeUser);
   console.log(userFavoriteQuotes);
