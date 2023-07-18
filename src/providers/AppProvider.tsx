@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { ChildrenProps, Favorite, Quote, User } from "../types";
-import { getFavorites, getQuotes, getUsers, addUser, addFavorite } from "../api/api-actions";
+import { getFavorites, getQuotes, getUsers, addUser, addFavorite, removeFavorite } from "../api/api-actions";
 
 export type AppContextType = {
   quotes: Quote[] | [];
@@ -105,21 +105,16 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
       quoteId: quoteId,
     }
     addFavorite(newFavorite)
-      .then(() => {
-        alert("Quote added to favorites")
-        updateFavorites(activeUser, quotes)
-      });
+      .then(() => updateFavorites(activeUser, quotes));
   }
 
   const removeFromFavorites = (quoteId: string) => {
     console.log("remove");
-    const currentFavorite = favorites.find(favorite => (
+    const currentFavoriteIdx = favorites.findIndex(favorite => (
       favorite.userId === activeUser.userId && favorite.quoteId === quoteId
     ))
-
-    console.log(activeUser.userId);
-    console.log(quoteId);
-    console.log(currentFavorite)
+    
+    console.log(currentFavoriteIdx)
   }
 
 

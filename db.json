@@ -22,11 +22,7 @@
       "password": "Password1"
     },
     {
-      "username": "mai-01",
-      "id": 4
-    },
-    {
-      "id": 5,
+      "id": 4,
       "userId": "testUser3",
       "username": "testUser3",
       "email": "tu3@ex.co",

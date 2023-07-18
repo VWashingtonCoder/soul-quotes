@@ -19,6 +19,11 @@ export const addFavorite = async (favorite: Favorite) => {
     return res.json();
 }
 
+export const removeFavorite = async(id: number) => {
+  const res = await fetch(`${BASE_URL}/favorites/${id}`, { method: 'DELETE' });
+  return res.json();
+}
+
 // QUOTES
 export const getQuotes = async () => {
   const res = await fetch(`${BASE_URL}/quotes`);
