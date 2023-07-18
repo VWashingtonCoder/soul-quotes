@@ -16,8 +16,10 @@ export default function QuoteCard({
   changeOne,
 }: QuoteCardProps) {
   const { quoteId, quote, category, author, creatorId } = quoteData;
-  const { userId } = useAppContext().activeUser;
-  const favorite = false;
+  const { activeUser, userFavoriteQuotes, addToFavorites, removeFromFavorites } = useAppContext();
+  const { userId } = activeUser;
+  const favorite = userFavoriteQuotes.includes(quoteData);
+
   return (
     <div className="quote-card" key={quoteId}>
       <div className="card-bar flex-align-center">
@@ -26,10 +28,28 @@ export default function QuoteCard({
         </div>
         <h2 className="card-bar-center">{category.toUpperCase()}</h2>
         <div className="card-bar-right">
-          {favorite ? (
-            <MdFavorite className="icon favorite" />
+          {userId && favorite ? (
+            <button 
+              className="icon-btn" 
+              onClick={(e) => {
+                e.preventDefault();
+                removeFromFavorites(quoteId)
+              }}
+            >
+              <MdFavorite className="icon favorite" />
+            </button>
+            
           ) : (
-            <MdFavoriteBorder className="icon unfavorite" />
+            <button 
+              className="icon-btn" 
+              onClick={(e) => {
+                e.preventDefault();
+                addToFavorites(quoteId)
+              }}
+            >
+              <MdFavoriteBorder className="icon unfavorite" />
+            </button>
+            
           )}
         </div>
       </div>

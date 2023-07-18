@@ -1,17 +1,20 @@
 import { createContext, useState, useEffect } from "react";
 import { ChildrenProps, Favorite, Quote, User } from "../types";
-import { getFavorites, getQuotes, getUsers, addUser } from "../api/api-actions";
+import { getFavorites, getQuotes, getUsers, addUser, addFavorite } from "../api/api-actions";
 
 export type AppContextType = {
   quotes: Quote[] | [];
   userFavoriteQuotes: Quote[] | [];
   users: User[];
   activeUser: User;
+  favorites: Favorite[];
   addNewUser: (user: User) => void;
   checkForExistingUserId: (userId: string) => boolean;
   checkForExistingEmail: (email: string) => boolean;
   loginActiveUser: (user: User) => void;
   removeActiveUser: () => void;
+  addToFavorites: (quoteId: string) => void;
+  removeFromFavorites: (quoteId: string) => void;
 };
 
 export const AppContext = createContext<AppContextType | object>({});
@@ -26,10 +29,13 @@ const noUser = {
 
 export const AppProvider = ({ children }: ChildrenProps) => {
   const [quotes, setQuotes] = useState([] as Quote[]);
-  const [userFavoriteQuotes, setUserFavoriteQuotes] = useState([] as Quote[]);
   const [users, setUsers] = useState([] as User[]);
+  const [favorites, setFavorites] = useState([] as Favorite[])
   const [activeUser, setActiveUser] = useState(noUser);
+  const [userFavoriteQuotes, setUserFavoriteQuotes] = useState([] as Quote[]);
+  
 
+  // Users
   const checkForExistingLocalUser = () => {
     const localUser = window.localStorage.getItem("activeUser");
 
@@ -50,25 +56,6 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     else return false;
   };
 
-  const getActiveUserQuotes = (favorites: Favorite[], user: User) => {
-    if (!user.userId) return;
-
-    const activeUserQuoteIds = [] as string[];
-    const activeUserFavorites = favorites.filter(
-      (favorite: Favorite) => favorite.userId === user.userId
-    );
-
-    activeUserFavorites.forEach((favorite: Favorite) =>
-      activeUserQuoteIds.push(favorite.quoteId)
-    );
-
-    const activeUserFavoriteQuotes = quotes.filter((quote: Quote) =>
-      activeUserQuoteIds.includes(quote.quoteId)
-    );
-
-    setUserFavoriteQuotes(activeUserFavoriteQuotes);
-  };
-
   const getAllUsers = () => {
     getUsers().then((users) => setUsers(users));
   };
@@ -87,18 +74,66 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     window.localStorage.removeItem("activeUser");
   };
 
+  // Favorites
+const updateFavorites = (user: User, quotes: Quote[]) => {
+  getFavorites().then((favorites: Favorite[]) => {
+    getActiveUserQuotes(favorites, user, quotes);
+    setFavorites(favorites);
+  });
+}
+
+  const getActiveUserQuotes = (favorites: Favorite[], user: User, allQuotes: Quote[]) => {
+    if (!user.userId) return;
+
+    const userFavorites = favorites.filter(
+      (favorite: Favorite) => favorite.userId === user.userId
+    );
+
+    const userFavoritesIDs = userFavorites.map((favorite: Favorite) => favorite.quoteId);
+
+    const userFavoriteQuotes = allQuotes.filter(
+      (quote: Quote) => userFavoritesIDs.includes(quote.quoteId)
+    );
+    
+    setUserFavoriteQuotes(userFavoriteQuotes)
+  };
+
+  const addToFavorites = (quoteId: string) => {
+    const newFavorite = {
+      id: favorites.length + 1,
+      userId: activeUser.userId,
+      quoteId: quoteId,
+    }
+    addFavorite(newFavorite)
+      .then(() => {
+        alert("Quote added to favorites")
+        updateFavorites(activeUser, quotes)
+      });
+  }
+
+  const removeFromFavorites = (quoteId: string) => {
+    console.log("remove");
+    const currentFavorite = favorites.find(favorite => (
+      favorite.userId === activeUser.userId && favorite.quoteId === quoteId
+    ))
+
+    console.log(activeUser.userId);
+    console.log(quoteId);
+    console.log(currentFavorite)
+  }
+
+
+
   useEffect(() => {
-    const user = checkForExistingLocalUser();
+    let user = checkForExistingLocalUser();
+    
     if (user) setActiveUser(user);
+    else user = noUser;
 
     getQuotes().then((quotes) => {
       setQuotes(quotes);
+      updateFavorites(user, quotes);
       getAllUsers();
-    });
-
-    getFavorites().then((favorites) => {
-      const userProp = user ? user : noUser;
-      getActiveUserQuotes(favorites, userProp);
     });
   }, []);
 
@@ -107,11 +142,14 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     userFavoriteQuotes,
     users,
     activeUser,
+    favorites,
     addNewUser,
     checkForExistingEmail,
     checkForExistingUserId,
     loginActiveUser,
     removeActiveUser,
+    addToFavorites,
+    removeFromFavorites
   };
 
   return (

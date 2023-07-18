@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { Favorite, Quote } from "../../types";
 
 export default function Favorites() {
-  const { userFavoriteQuotes } = useAppContext();
+  const { activeUser, userFavoriteQuotes } = useAppContext();
   console.log(userFavoriteQuotes);
+
+
 
   return (
     <section className="page favorites">
@@ -27,17 +29,32 @@ export default function Favorites() {
           </tr>
         </thead>
         <tbody>
-          {/* {favorites.map((favorite) => (
-                        <tr key={favorite.id}>
-                            <td>{favorite.quote}</td>
-                            <td>{favorite.author}</td>
-                            <td>{favorite.category}</td>
-                            <td>
-                                <button onClick={() => handleFavorite(favorite.id)}>Edit</button>
-                                <button onClick={() => handleDelete(favorite.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))} */}
+          {userFavoriteQuotes.map((favorite) => {
+            const { quoteId, quote, author, category, creatorId } = favorite;
+            return (
+              <tr key={quoteId}>
+                <td>{quote}</td>
+                <td>{author}</td>
+                <td>{category}</td>
+                <td>
+                  <button
+                    className="btn unfavorite" 
+                    // onClick={() => handleFavorite(favorite.id)}
+                  >
+                    Edit
+                  </button>
+                  {activeUser.userId === creatorId && (
+                    <button 
+                      className="btn trash"
+                      // onClick={() => handleDelete(favorite.id)}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </section>
