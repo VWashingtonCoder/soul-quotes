@@ -434,28 +434,28 @@
   "favorites": [
     {
       "id": 1,
-      "userId": "admin-1",
-      "quoteId": "success-1"
+      "uId": "admin-1",
+      "qId": "success-1"
     },
     {
       "id": 2,
-      "userId": "testUser3",
-      "quoteId": "funny-10"
+      "uId": "testUser3",
+      "qId": "funny-10"
     },
     {
       "id": 3,
-      "userId": "testUser3",
-      "quoteId": "funny-4"
+      "uId": "testUser3",
+      "qId": "funny-4"
     },
     {
       "id": 4,
-      "userId": "testUser3",
-      "quoteId": "funny-8"
+      "uId": "testUser3",
+      "qId": "funny-8"
     },
     {
       "id": 5,
-      "userId": "testUser3",
-      "quoteId": "funny-9"
+      "uId": "testUser3",
+      "qId": "funny-9"
     }
   ]
 }

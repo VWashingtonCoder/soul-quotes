@@ -86,10 +86,10 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
     if (!user.userId) return;
 
     const userFavorites = favorites.filter(
-      (favorite: Favorite) => favorite.userId === user.userId
+      (favorite: Favorite) => favorite.uId === user.userId
     );
 
-    const userFavoritesIDs = userFavorites.map((favorite: Favorite) => favorite.quoteId);
+    const userFavoritesIDs = userFavorites.map((favorite: Favorite) => favorite.qId);
 
     const userFavoriteQuotes = allQuotes.filter(
       (quote: Quote) => userFavoritesIDs.includes(quote.quoteId)
@@ -101,8 +101,8 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
   const addToFavorites = (quoteId: string) => {
     const newFavorite = {
       id: favorites.length + 1,
-      userId: activeUser.userId,
-      quoteId: quoteId,
+      uId: activeUser.userId,
+      qId: quoteId,
     }
     addFavorite(newFavorite)
       .then(() => updateFavorites(activeUser, quotes));
@@ -111,7 +111,7 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
   const removeFromFavorites = (quoteId: string) => {
     console.log("remove");
     const currentFavoriteIdx = favorites.findIndex(favorite => (
-      favorite.userId === activeUser.userId && favorite.quoteId === quoteId
+      favorite.uId === activeUser.userId && favorite.qId === quoteId
     ))
     
     console.log(currentFavoriteIdx)

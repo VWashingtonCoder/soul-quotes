@@ -4,8 +4,16 @@ import { TfiReload } from "react-icons/tfi";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
+type QuoteCard = {
+  quoteId: string;
+  quote: string;
+  category: string;
+  author: string;
+  creatorId: string;
+}
+
 type QuoteCardProps = {
-  quoteData: Quote;
+  quoteData: QuoteCard;
   idx: number;
   changeOne: (idx: number) => void;
 };
@@ -18,7 +26,14 @@ export default function QuoteCard({
   const { quoteId, quote, category, author, creatorId } = quoteData;
   const { activeUser, userFavoriteQuotes, addToFavorites, removeFromFavorites } = useAppContext();
   const { userId } = activeUser;
-  const favorite = userFavoriteQuotes.includes(quoteData);
+
+  const checkFavoriteStatus = () => {
+    const favoriteQuoteIds: string[] = [];
+    userFavoriteQuotes.map(quote => {
+      favoriteQuoteIds.push(quote.quoteId);
+    })
+    return favoriteQuoteIds.includes(quoteId);
+  }
 
   return (
     <div className="quote-card" key={quoteId}>
@@ -28,7 +43,7 @@ export default function QuoteCard({
         </div>
         <h2 className="card-bar-center">{category.toUpperCase()}</h2>
         <div className="card-bar-right">
-          {userId && favorite ? (
+          {userId && checkFavoriteStatus() ? (
             <button 
               className="icon-btn" 
               onClick={(e) => {

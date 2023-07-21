@@ -17,8 +17,8 @@ export interface Quote {
 
 export interface Favorite {
   ["id"]: number;
-  userId: string;
-  quoteId: string;
+  uId: string;
+  qId: string;
 }
 
 export interface ChildrenProps {
