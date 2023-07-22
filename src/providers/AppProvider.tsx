@@ -118,7 +118,6 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   }
 
   const removeFromFavorites = (quoteId: string) => {
-    console.log("remove");
     const currentIdx = favorites.findIndex((favorite) => favorite.qId === quoteId && favorite.uId === activeUser.userId);
     const currentFavoriteId = favorites[currentIdx].id;
 
