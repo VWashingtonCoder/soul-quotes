@@ -1,11 +1,13 @@
 import { CategorySelect } from "../CategorySelect/CategorySelect";
 import { useAppContext } from "../../hooks/CustomUseHooks";
-import { useState, useEffect } from "react";
-import { Favorite, Quote } from "../../types";
+import { MdFavorite } from "react-icons/md";
 
 export default function Favorites() {
-  const { activeUser, userFavoriteQuotes } = useAppContext();
-  console.log(userFavoriteQuotes);
+  const {
+    activeUser, 
+    userFavoriteQuotes, 
+    removeFromFavorites
+  } = useAppContext();
 
 
 
@@ -38,15 +40,18 @@ export default function Favorites() {
                 <td>{category}</td>
                 <td>
                   <button
-                    className="btn unfavorite" 
-                    // onClick={() => handleFavorite(favorite.id)}
+                    className="btn unfavorite"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeFromFavorites(quoteId)
+                    }}
                   >
-                    Edit
+                    <MdFavorite className="icon favorite" />
                   </button>
                   {activeUser.userId === creatorId && (
-                    <button 
+                    <button
                       className="btn trash"
-                      // onClick={() => handleDelete(favorite.id)}
+                    // onClick={() => handleDelete(favorite.id)}
                     >
                       Delete
                     </button>

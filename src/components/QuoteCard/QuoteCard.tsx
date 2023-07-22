@@ -4,16 +4,8 @@ import { TfiReload } from "react-icons/tfi";
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
-type QuoteCard = {
-  quoteId: string;
-  quote: string;
-  category: string;
-  author: string;
-  creatorId: string;
-}
-
 type QuoteCardProps = {
-  quoteData: QuoteCard;
+  quoteData: Quote;
   idx: number;
   changeOne: (idx: number) => void;
 };

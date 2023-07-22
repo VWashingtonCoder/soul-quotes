@@ -1,28 +1,24 @@
 {
   "users": [
     {
-      "id": 1,
       "userId": "admin-1",
       "username": "admin-1",
       "email": "admin1@localhost.com",
       "password": "admin"
     },
     {
-      "id": 2,
       "userId": "admin-2",
       "username": "admin-2",
       "email": "admin2@localhost.com",
       "password": "admin"
     },
     {
-      "id": 3,
       "userId": "user-1",
       "username": "andreblaze",
       "email": "andreblaze@soul.com",
       "password": "Password1"
     },
     {
-      "id": 4,
       "userId": "testUser3",
       "username": "testUser3",
       "email": "tu3@ex.co",
@@ -31,7 +27,6 @@
   ],
   "quotes": [
     {
-      "id": 1,
       "quoteId": "inspirational-1",
       "quote": "Change will not come if we wait for some other person or some other time. We are the ones we've been waiting for. We are the change that we seek.",
       "author": "Barack Obama",
@@ -39,7 +34,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 2,
       "quoteId": "inspirational-2",
       "quote": "The cost of liberty is less than the price of repression.",
       "author": "W.E.B. Du Bois",
@@ -47,7 +41,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 3,
       "quoteId": "inspirational-3",
       "quote": "Hold fast to dreams, for if dreams die, life is a broken-winged bird that cannot fly.",
       "author": "Langston Hughes",
@@ -55,7 +48,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 4,
       "quoteId": "inspirational-4",
       "quote": "Don't give up, there's no shame in falling down! True shame is to not stand up again!",
       "author": "Naruto (Shippuden)",
@@ -63,7 +55,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 5,
       "quoteId": "inspirational-5",
       "quote": "Believe in yourself. Not in the you who believes in me. Not the me who believes in you. Believe in the you who believes in yourself.",
       "author": "Kamina (Gurren Lagann)",
@@ -71,7 +62,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 6,
       "quoteId": "inspirational-6",
       "quote": "It's not always rainbows and butterflies, but compromise that moves us along.",
       "author": "Koro-sensei (Assassination Classroom)",
@@ -79,7 +69,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 7,
       "quoteId": "inspirational-7",
       "quote": "It doesn't matter if you're weak. If you struggle hard enough, you can make a miracle happen.",
       "author": "Oikawa Tooru (Haikyuu!!)",
@@ -87,7 +76,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 8,
       "quoteId": "inspirational-8",
       "quote": "Fear is not evil. It tells you what your weakness is. And once you know your weakness, you can become stronger as well as kinder.",
       "author": "Gildarts Clive (Fairy Tail)",
@@ -95,7 +83,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 9,
       "quoteId": "inspirational-9",
       "quote": "Hard work betrays none, but dreams betray many.",
       "author": "Hachiman Hikigaya (My Teen Romantic Comedy SNAFU)",
@@ -103,7 +90,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 10,
       "quoteId": "inspirational-10",
       "quote": "When you hit the point of no return, that's the moment it truly becomes a journey.",
       "author": "Kino, Kino's Journey",
@@ -111,7 +97,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 11,
       "quoteId": "love-1",
       "quote": "Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope.",
       "author": "Maya Angelou",
@@ -119,7 +104,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 12,
       "quoteId": "love-2",
       "quote": "Love is an endless act of forgiveness. Forgiveness is an endless act of love.",
       "author": "Coretta Scott King",
@@ -127,7 +111,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 13,
       "quoteId": "love-3",
       "quote": "Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day",
       "author": "Steve Harvey",
@@ -135,7 +118,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 14,
       "quoteId": "love-4",
       "quote": "Love is friendship that has caught fire. It is quiet understanding, mutual confidence, sharing, and forgiving. It is loyalty through good and bad times.",
       "author": "Ann Landers",
@@ -143,7 +125,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 15,
       "quoteId": "love-5",
       "quote": "I love you not because of who you are, but because of who I am when I am with you.",
       "author": "Roy Mustang (Fullmetal Alchemist)",
@@ -151,7 +132,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 16,
       "quoteId": "love-6",
       "quote": "Love doesn't need a reason. Pure love will come from the heart without reason and it'll stay every season.",
       "author": "Mamoru Chiba (Sailor Moon)",
@@ -159,7 +139,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 17,
       "quoteId": "love-7",
       "quote": "The meaning of love is that you can embrace all of someone's imperfections and still see perfection.",
       "author": "Tenma Tsukamoto (School Rumble)",
@@ -167,7 +146,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 18,
       "quoteId": "love-8",
       "quote": "Love is the most beautiful of all passions, the strongest emotion, and the one that makes us feel most alive.",
       "author": "Hinako Todo, The Anthem of the Heart",
@@ -175,7 +153,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 19,
       "quoteId": "love-9",
       "quote": "I'll be by your side, supporting you. Even if you, yourself, become your own enemy.",
       "author": "Kikyo (InuYasha)",
@@ -183,7 +160,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 20,
       "quoteId": "love-10",
       "quote": "I want to be the reason you smile.",
       "author": "Ayuzawa Misaki (Maid Sama!)",
@@ -191,7 +167,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 21,
       "quoteId": "philosophy-1",
       "quote": "If you want to lift yourself up, lift up someone else.",
       "author": "Booker T. Washington",
@@ -199,7 +174,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 22,
       "quoteId": "philosophy-2",
       "quote": "I am not what I ought to be, I am not what I want to be, I am not what I hope to be, but still, I am not what I used to be, and by the grace of God, I am what I am.",
       "author": "Frederick Douglass",
@@ -207,7 +181,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 23,
       "quoteId": "philosophy-3",
       "quote": "We must learn to live together as brothers or perish together as fools.",
       "author": "Martin Luther King Jr.",
@@ -215,7 +188,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 24,
       "quoteId": "philosophy-4",
       "quote": "We must use time creatively, in the knowledge that the time is always ripe to do right.",
       "author": "Nelson Mandela",
@@ -223,7 +195,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 25,
       "quoteId": "philosophy-5",
       "quote": "The world is full of empty words. What matters is how you act.",
       "author": "Makishima Shogo (Psycho-Pass)",
@@ -231,7 +202,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 26,
       "quoteId": "philosophy-6",
       "quote": "In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.",
       "author": " Yui Hirasawa (K-On!)",
@@ -239,7 +209,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 27,
       "quoteId": "philosophy-7",
       "quote": "The things that people believe are categorized into two types: things that should be believed and things that shouldn't be believed. But people aren't able to tell the difference between the two.",
       "author": "Ougi Oshino (Monogatari Series)",
@@ -247,7 +216,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 28,
       "quoteId": "philosophy-8",
       "quote": "People need a god to give them courage and encouragement. They need to believe in something bigger than themselves. They need a leader to give them guidance.",
       "author": "Satsuki Kiryuin (Kill la Kill)",
@@ -255,7 +223,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 29,
       "quoteId": "philosophy-9",
       "quote": "I think therefore I am.",
       "author": "René Descartes",
@@ -263,7 +230,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 30,
       "quoteId": "philosophy-10",
       "quote": "In three words, I can sum up everything I've learned about life: it goes on.",
       "author": "Robert Frost",
@@ -271,7 +237,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 31,
       "quoteId": "success-1",
       "quote": "Life is not a game of luck. If you want to win, work hard.",
       "author": "Sora (No Game No Life)",
@@ -279,7 +244,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 32,
       "quoteId": "success-2",
       "quote": "Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome while trying to succeed.",
       "author": "Booker T. Washington",
@@ -287,7 +251,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 33,
       "quoteId": "success-3",
       "quote": "Success is not the absence of failure; it's the persistence through failure.",
       "author": "Aliko Dangote",
@@ -295,7 +258,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 34,
       "quoteId": "success-4",
       "quote": "Success is not about how much money you make; it's about the difference you make in people's lives.",
       "author": "Michelle Obama",
@@ -303,7 +265,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 35,
       "quoteId": "success-5",
       "quote": "If you don't take risks, you can't create a future.",
       "author": "Monkey D. Luffy (One Piece)",
@@ -311,7 +272,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 36,
       "quoteId": "success-6",
       "quote": "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
       "author": "Albert Schweitzer",
@@ -319,7 +279,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 37,
       "quoteId": "success-7",
       "quote": "Success is not in what you have, but who you are.",
       "author": "Bo Bennett",
@@ -327,7 +286,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 38,
       "quoteId": "success-8",
       "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
       "author": "Winston Churchill",
@@ -335,7 +293,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 39,
       "quoteId": "success-9",
       "quote": "The only limit to our realization of tomorrow will be our doubts of today.",
       "author": "Franklin D. Roosevelt",
@@ -343,7 +300,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 40,
       "quoteId": "success-10",
       "quote": "The future belongs to those who believe in the beauty of their dreams.",
       "author": "Eleanor Roosevelt",
@@ -351,7 +307,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 41,
       "quoteId": "funny-1",
       "quote": "I'm not addicted to games; I'm committed to them.",
       "author": "Hasegawa Taizou (Gintama)",
@@ -359,7 +314,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 42,
       "quoteId": "funny-2",
       "quote": "I'm not crazy. My reality is just different from yours.",
       "author": "Alice (Pandora Hearts)",
@@ -367,7 +321,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 43,
       "quoteId": "funny-3",
       "quote": "I don't suffer from insanity. I enjoy every minute of it!",
       "author": "Izaya Orihara (Durarara!!)",
@@ -375,7 +328,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 44,
       "quoteId": "funny-4",
       "quote": "I'm not late; I just arrive precisely when I mean to.",
       "author": "Gandalf (Lord Of The Rings)",
@@ -383,7 +335,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 45,
       "quoteId": "funny-5",
       "quote": "My advice to you is get married: If you find a good wife you will be happy; if not, you will become a philosopher.",
       "author": "Socrates",
@@ -391,7 +342,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 46,
       "quoteId": "funny-6",
       "quote": "People say money is not the key to happiness, but I have always figured if you have enough money, you can have a key made.",
       "author": "Joan Rivers",
@@ -399,7 +349,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 47,
       "quoteId": "funny-7",
       "quote": "Do not take life too seriously. You will never get out of it alive.",
       "author": "Elbert Hubbard",
@@ -407,7 +356,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 48,
       "quoteId": "funny-8",
       "quote": "The optimist proclaims that we live in the best of all possible worlds, and the pessimist fears this is true.",
       "author": "James Branch Cabell",
@@ -415,7 +363,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 49,
       "quoteId": "funny-9",
       "quote": "I love mankind... it's people I can't stand!!",
       "author": "Charles M. Schulz",
@@ -423,7 +370,6 @@
       "creatorId": "admin-1"
     },
     {
-      "id": 50,
       "quoteId": "funny-10",
       "quote": "I think God, in creating man, somewhat overestimated his ability.",
       "author": "Oscar Wilde",
@@ -448,14 +394,9 @@
       "qId": "funny-4"
     },
     {
-      "id": 4,
+      "id": 6,
       "uId": "testUser3",
-      "qId": "funny-8"
-    },
-    {
-      "id": 5,
-      "uId": "testUser3",
-      "qId": "funny-9"
+      "qId": "inspirational-8"
     }
   ]
 }

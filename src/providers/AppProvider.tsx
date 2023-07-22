@@ -33,7 +33,6 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   const [favorites, setFavorites] = useState([] as Favorite[])
   const [activeUser, setActiveUser] = useState(noUser);
   const [userFavoriteQuotes, setUserFavoriteQuotes] = useState([] as Quote[]);
-  
 
   // Users
   const checkForExistingLocalUser = () => {
@@ -57,11 +56,15 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   };
 
   const getAllUsers = () => {
-    getUsers().then((users) => setUsers(users));
+    getUsers()
+      .then((users) => setUsers(users))
+      .catch(err => alert(err));
   };
 
   const addNewUser = (user: User) => {
-    addUser(user).then(() => getAllUsers());
+    addUser(user)
+      .then(() => getAllUsers())
+      .catch(err => alert(err));
   };
 
   const loginActiveUser = (user: User) => {
@@ -75,12 +78,14 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   };
 
   // Favorites
-const updateFavorites = (user: User, quotes: Quote[]) => {
-  getFavorites().then((favorites: Favorite[]) => {
-    getActiveUserQuotes(favorites, user, quotes);
-    setFavorites(favorites);
-  });
-}
+  const updateFavorites = (user: User, quotes: Quote[]) => {
+    getFavorites()
+      .then((favorites: Favorite[]) => {
+        getActiveUserQuotes(favorites, user, quotes);
+        setFavorites(favorites);
+      })
+      .catch(err => alert(err));
+  }
 
   const getActiveUserQuotes = (favorites: Favorite[], user: User, allQuotes: Quote[]) => {
     if (!user.userId) return;
@@ -94,34 +99,41 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
     const userFavoriteQuotes = allQuotes.filter(
       (quote: Quote) => userFavoritesIDs.includes(quote.quoteId)
     );
-    
+
     setUserFavoriteQuotes(userFavoriteQuotes)
   };
 
   const addToFavorites = (quoteId: string) => {
+    const lastFavoriteId = favorites[favorites.length - 1].id;
     const newFavorite = {
-      id: favorites.length + 1,
+      id: lastFavoriteId + 1,
       uId: activeUser.userId,
       qId: quoteId,
     }
     addFavorite(newFavorite)
-      .then(() => updateFavorites(activeUser, quotes));
+      .then(() => {
+        updateFavorites(activeUser, quotes);
+        alert("Quote added to favorites");
+      });
   }
 
   const removeFromFavorites = (quoteId: string) => {
     console.log("remove");
-    const currentFavoriteIdx = favorites.findIndex(favorite => (
-      favorite.uId === activeUser.userId && favorite.qId === quoteId
-    ))
-    
-    console.log(currentFavoriteIdx)
+    const currentIdx = favorites.findIndex((favorite) => favorite.qId === quoteId && favorite.uId === activeUser.userId);
+    const currentFavoriteId = favorites[currentIdx].id;
+
+    removeFavorite(currentFavoriteId)
+      .then(() => {
+        updateFavorites(activeUser, quotes);
+        alert("Quote removed from favorites");
+      });
   }
 
 
 
   useEffect(() => {
     let user = checkForExistingLocalUser();
-    
+
     if (user) setActiveUser(user);
     else user = noUser;
 
@@ -129,7 +141,7 @@ const updateFavorites = (user: User, quotes: Quote[]) => {
       setQuotes(quotes);
       updateFavorites(user, quotes);
       getAllUsers();
-    });
+    }).catch(err => alert(err));
   }, []);
 
   const providerValue = {
