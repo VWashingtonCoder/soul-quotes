@@ -1,0 +1,26 @@
+#createForm {
+    max-width: 500px;
+    margin: auto;
+    background: beige;
+    color: black;
+    padding: 30px;
+}
+
+.form-input-container {
+    margin-bottom: 10px;
+}
+
+.input-label {
+    width: 150px;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.form-input {
+    font-size: 1.25rem;
+}
+
+.form-input.author {
+    width: 18rem;
+    padding: 5px;
+}
