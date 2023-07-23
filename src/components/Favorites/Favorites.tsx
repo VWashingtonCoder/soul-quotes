@@ -1,15 +1,12 @@
+import { useState } from "react";
 import { CategorySelect } from "../CategorySelect/CategorySelect";
 import { useAppContext } from "../../hooks/CustomUseHooks";
 import { MdFavorite } from "react-icons/md";
-import { useState } from "react";
+import { BsFillTrashFill } from "react-icons/bs";
+import "./Favorites.css";
 
 export default function Favorites() {
-  const {
-    activeUser,
-    userFavoriteQuotes,
-    removeFromFavorites
-  } = useAppContext();
-
+  const { activeUser, userFavoriteQuotes, removeFromFavorites } = useAppContext();
   const [filterCategory, setFilterCategory] = useState("all");
   const filteredQuotes = userFavoriteQuotes.filter(quote => {
     if (filterCategory === "all") {
@@ -25,17 +22,18 @@ export default function Favorites() {
 
   return (
     <section className="page favorites">
-      <div className="filter search">
-        <p className="filter label">Filter By Category</p>
+      <h2 className="page-title">Favorite Quotes</h2>
+      <div className="filter-search flex-align-center">
+        <span className="filter-label">Filter By Category: </span>
         <CategorySelect update={updateFilterCategory} value={filterCategory} />
       </div>
-      <table className="favorites table">
+      <table className="favorites-table">
         <thead>
           <tr>
-            <th>Quote</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Actions</th>
+            <th className="quote-col head">Quote</th>
+            <th className="author-col head">Author</th>
+            <th className="category-col head">Category</th>
+            <th className="actions-col head">Action(s)</th>
           </tr>
         </thead>
         <tbody>
@@ -44,12 +42,12 @@ export default function Favorites() {
               const { quoteId, quote, author, category, creatorId } = favorite;
               return (
                 <tr key={quoteId}>
-                  <td>{quote}</td>
-                  <td>{author}</td>
-                  <td>{category}</td>
-                  <td>
+                  <td className="quote-col cell">{quote}</td>
+                  <td className="author-col cell">{author}</td>
+                  <td className="category-col cell">{category}</td>
+                  <td className="actions-col cell">
                     <button
-                      className="btn unfavorite"
+                      className="icon-btn unfavorite"
                       onClick={(e) => {
                         e.preventDefault();
                         removeFromFavorites(quoteId)
@@ -59,10 +57,10 @@ export default function Favorites() {
                     </button>
                     {activeUser.userId === creatorId && (
                       <button
-                        className="btn trash"
+                        className="icon-btn trash"
                       // onClick={() => handleDelete(favorite.id)}
                       >
-                        Delete
+                        <BsFillTrashFill className="icon trash" />
                       </button>
                     )}
                   </td>

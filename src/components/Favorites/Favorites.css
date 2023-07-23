@@ -1,0 +1,38 @@
+.filter.label {
+    font-size: 1.75rem;
+    margin-right: 10px;
+}
+
+.filter-search {
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.favorites-table {
+    width: 100%;
+    background: bisque;
+    color: black;
+}
+
+.quote-col {
+    max-width: 700px;
+}
+
+.quote-col.cell {
+    padding: 10px 20px;
+}
+
+.category-col.cell {
+    text-transform: capitalize;
+}
+
+.head {
+    font-size: 1.65rem;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+.favorites .icon-btn {
+    color: black;
+    font-size: 1.5rem;
+}
