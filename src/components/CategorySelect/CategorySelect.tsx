@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 type SelectProps = {
-  update: (e: {
+  value: string;
+  change?: (e: {
+    target: {
+      name: string,
+      value: string
+    };
+  }) => void;
+  update?: (e: {
     target: {
       value: string;
     };
   }) => void;
-  value: string;
 };
 
 const categories = [
@@ -27,9 +33,13 @@ const CategorySelectStyles = styled.select`
   padding: 0.25rem 0.5rem;
 `;
 
-export function CategorySelect({ update, value }: SelectProps) {
+export function CategorySelect({ change, update, value }: SelectProps) {
   return (
-    <CategorySelectStyles onChange={update} name="category" value={value}>
+    <CategorySelectStyles 
+      onChange={update ? update : change} 
+      name="category" 
+      value={value}
+    >
       {categories.map((category) => (
         <option key={category.key} value={category.key}>
           {category.label}

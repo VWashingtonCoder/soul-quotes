@@ -30,6 +30,17 @@ export const getQuotes = async () => {
   return res.json();
 };
 
+export const addQuote = async(quote: Quote) => {
+  const res = await fetch(`${BASE_URL}/quotes`, {
+    method: 'POST',
+    headers: {
+        'Content-type': 'Application/json'
+    },
+    body: JSON.stringify(quote)
+  });
+  return res.json();
+}
+
 // USERS
 export const getUsers = async () => {
   const res = await fetch(`${BASE_URL}/users`);

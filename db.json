@@ -7,18 +7,6 @@
       "password": "admin"
     },
     {
-      "userId": "admin-2",
-      "username": "admin-2",
-      "email": "admin2@localhost.com",
-      "password": "admin"
-    },
-    {
-      "userId": "user-1",
-      "username": "andreblaze",
-      "email": "andreblaze@soul.com",
-      "password": "Password1"
-    },
-    {
       "userId": "testUser3",
       "username": "testUser3",
       "email": "tu3@ex.co",
@@ -375,6 +363,54 @@
       "author": "Oscar Wilde",
       "category": "funny",
       "creatorId": "testUser3"
+    },
+    {
+      "id": 50,
+      "quoteId": "random",
+      "quote": "to live or not to live",
+      "author": "Unknown",
+      "category": "funny",
+      "creatorId": "testUser3"
+    },
+    {
+      "quoteId": "random",
+      "quote": "to live or not to live",
+      "author": "Unknown",
+      "category": "funny",
+      "creatorId": "testUser3",
+      "id": 51
+    },
+    {
+      "quoteId": "random",
+      "quote": "to live or not to live",
+      "author": "Unknown",
+      "category": "funny",
+      "creatorId": "testUser3",
+      "id": 52
+    },
+    {
+      "quoteId": "funny-11",
+      "quote": "My own Quote",
+      "author": "Unknown",
+      "category": "funny",
+      "creatorId": "testUser3",
+      "id": 53
+    },
+    {
+      "id": 54,
+      "quoteId": "funny-15",
+      "quote": "Motto Quote",
+      "author": "Unknown",
+      "category": "funny",
+      "creatorId": "testUser3"
+    },
+    {
+      "quoteId": "funny-16",
+      "quote": "To make or not to make",
+      "author": "Unknown3",
+      "category": "funny",
+      "creatorId": "testUser3",
+      "id": 55
     }
   ],
   "favorites": [
@@ -402,6 +438,11 @@
       "id": 9,
       "uId": "testUser3",
       "qId": "funny-4"
+    },
+    {
+      "id": 10,
+      "uId": "testUser3",
+      "qId": "funny-16"
     }
   ]
 }

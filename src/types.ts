@@ -1,13 +1,11 @@
 export interface User {
-  ["id"]: number;
-  userId: string;
+  ["userId"]: string;
   username: string;
   email: string;
   password: string;
 }
 
 export interface Quote {
-  ["id"]: number;
   quoteId: string;
   quote: string;
   author: string;
@@ -23,6 +21,12 @@ export interface Favorite {
 
 export interface ChildrenProps {
   children: React.ReactNode;
+}
+
+export type FormValues = {
+  ["quote"]: string;
+  author: string;
+  category: string;
 }
 
 export interface FormValuesErrors {

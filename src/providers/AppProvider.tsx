@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { ChildrenProps, Favorite, Quote, User } from "../types";
-import { getFavorites, getQuotes, getUsers, addUser, addFavorite, removeFavorite } from "../api/api-actions";
+import { ChildrenProps, Favorite, Quote, User, FormValues } from "../types";
+import { addQuote, getFavorites, getQuotes, getUsers, addUser, addFavorite, removeFavorite } from "../api/api-actions";
 
 export type AppContextType = {
   quotes: Quote[] | [];
@@ -15,17 +15,19 @@ export type AppContextType = {
   removeActiveUser: () => void;
   addToFavorites: (quoteId: string) => void;
   removeFromFavorites: (quoteId: string) => void;
+  addNewQuote: (newQuote: FormValues) => void;
 };
 
 export const AppContext = createContext<AppContextType | object>({});
 
 const noUser = {
-  id: 0,
   userId: "",
   username: "",
   email: "",
   password: "",
 };
+
+const errorMessage = "Uh-oh...We hit an error...";
 
 export const AppProvider = ({ children }: ChildrenProps) => {
   const [quotes, setQuotes] = useState([] as Quote[]);
@@ -38,9 +40,8 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   const checkForExistingLocalUser = () => {
     const localUser = window.localStorage.getItem("activeUser");
 
-    if (localUser) {
-      return JSON.parse(localUser);
-    } else return null;
+    if (localUser) return JSON.parse(localUser);
+    else return null;
   };
 
   const checkForExistingUserId = (userId: string) => {
@@ -58,13 +59,19 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   const getAllUsers = () => {
     getUsers()
       .then((users) => setUsers(users))
-      .catch(err => alert(err));
+      .catch(err => {
+        console.log(err);
+        alert(errorMessage);
+      });
   };
 
   const addNewUser = (user: User) => {
     addUser(user)
       .then(() => getAllUsers())
-      .catch(err => alert(err));
+      .catch(err => {
+        console.log(err);
+        alert(errorMessage);
+      });
   };
 
   const loginActiveUser = (user: User) => {
@@ -78,15 +85,6 @@ export const AppProvider = ({ children }: ChildrenProps) => {
   };
 
   // Favorites
-  const updateFavorites = (user: User, quotes: Quote[]) => {
-    getFavorites()
-      .then((favorites: Favorite[]) => {
-        getActiveUserQuotes(favorites, user, quotes);
-        setFavorites(favorites);
-      })
-      .catch(err => alert(err));
-  }
-
   const getActiveUserQuotes = (favorites: Favorite[], user: User, allQuotes: Quote[]) => {
     if (!user.userId) return;
 
@@ -102,6 +100,18 @@ export const AppProvider = ({ children }: ChildrenProps) => {
 
     setUserFavoriteQuotes(userFavoriteQuotes)
   };
+
+  const updateFavorites = (user: User, quotes: Quote[]) => {
+    getFavorites()
+      .then((favorites: Favorite[]) => {
+        getActiveUserQuotes(favorites, user, quotes);
+        setFavorites(favorites);
+      })
+      .catch(err => {
+        console.log(err);
+        alert(errorMessage);
+      });
+  }
 
   const addToFavorites = (quoteId: string) => {
     const lastFavoriteId = favorites[favorites.length - 1].id;
@@ -128,19 +138,48 @@ export const AppProvider = ({ children }: ChildrenProps) => {
       });
   }
 
+  // Quotes
+  const refreshQuotes = () => {
+    getQuotes()
+      .then((quotes) => setQuotes(quotes))
+      .catch(err => {
+        console.log(err);
+        alert(errorMessage);
+      });
+  }
 
+  const addNewQuote = (newQuote: FormValues) => {
+    const { quote, author, category } = newQuote;
+    const categoryQuotes = quotes.filter(quoteData => quoteData.category === category);
+    const newQuoteData = {
+      quoteId: `${category}-${categoryQuotes.length + 1}`,
+      quote,
+      author,
+      category,
+      creatorId: activeUser.userId
+    };
+
+    addQuote(newQuoteData)
+      .then((quote) => {
+        refreshQuotes()
+        alert("Quote added to database");
+        addToFavorites(quote.quoteId);
+      })
+      .catch(err => {
+        console.log(err);
+        alert(errorMessage);
+      });
+  }
 
   useEffect(() => {
     let user = checkForExistingLocalUser();
 
-    if (user) setActiveUser(user);
+    if (user && activeUser !== user) setActiveUser(user);
     else user = noUser;
 
-    getQuotes().then((quotes) => {
-      setQuotes(quotes);
-      updateFavorites(user, quotes);
-      getAllUsers();
-    }).catch(err => alert(err));
+    refreshQuotes();
+    getAllUsers();
+    updateFavorites(user, quotes);
   }, []);
 
   const providerValue = {
@@ -155,7 +194,8 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     loginActiveUser,
     removeActiveUser,
     addToFavorites,
-    removeFromFavorites
+    removeFromFavorites,
+    addNewQuote
   };
 
   return (
