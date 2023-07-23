@@ -29,7 +29,7 @@ const CategorySelectStyles = styled.select`
 
 export function CategorySelect({ update, value }: SelectProps) {
   return (
-    <CategorySelectStyles onChange={update} value={value}>
+    <CategorySelectStyles onChange={update} name="category" value={value}>
       {categories.map((category) => (
         <option key={category.key} value={category.key}>
           {category.label}
