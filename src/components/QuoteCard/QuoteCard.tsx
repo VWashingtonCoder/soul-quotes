@@ -16,16 +16,24 @@ export default function QuoteCard({
   changeOne,
 }: QuoteCardProps) {
   const { quoteId, quote, category, author, creatorId } = quoteData;
-  const { activeUser, userFavoriteQuotes, addToFavorites, removeFromFavorites } = useAppContext();
+  const {
+    activeUser,
+    userFavoriteQuotes,
+    addToFavorites,
+    removeFromFavorites,
+  } = useAppContext();
   const { userId } = activeUser;
+  const loggedIn = userId !== "";
 
   const checkFavoriteStatus = () => {
     const favoriteQuoteIds: string[] = [];
-    userFavoriteQuotes.map(quote => {
+    userFavoriteQuotes.map((quote) => {
       favoriteQuoteIds.push(quote.quoteId);
-    })
+    });
     return favoriteQuoteIds.includes(quoteId);
-  }
+  };
+
+  console.log(loggedIn);
 
   return (
     <div className="quote-card" key={quoteId}>
@@ -34,29 +42,23 @@ export default function QuoteCard({
           <TfiReload className="icon reload" onClick={() => changeOne(idx)} />
         </div>
         <h2 className="card-bar-center">{category.toUpperCase()}</h2>
+
         <div className="card-bar-right">
-          {userId && checkFavoriteStatus() ? (
-            <button 
-              className="icon-btn" 
-              onClick={(e) => {
-                e.preventDefault();
-                removeFromFavorites(quoteId)
-              }}
-            >
-              <MdFavorite className="icon favorite" />
-            </button>
-            
-          ) : (
-            <button 
-              className="icon-btn" 
-              onClick={(e) => {
-                e.preventDefault();
-                addToFavorites(quoteId)
-              }}
-            >
-              <MdFavoriteBorder className="icon unfavorite" />
-            </button>
-            
+          {loggedIn && (
+            <>
+              `{" "}
+              {checkFavoriteStatus() ? (
+                <MdFavorite
+                  className="icon favorite"
+                  onClick={() => removeFromFavorites(quoteId)}
+                />
+              ) : (
+                <MdFavoriteBorder
+                  className="icon favorite"
+                  onClick={() => addToFavorites(quoteId)}
+                />
+              )}
+            </>
           )}
         </div>
       </div>

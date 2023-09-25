@@ -6,7 +6,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import "./Favorites.css";
 
 export default function Favorites() {
-  const { activeUser, userFavoriteQuotes, removeFromFavorites } = useAppContext();
+  const { activeUser, userFavoriteQuotes, removeFromFavorites, removeQuote } = useAppContext();
   const [filterCategory, setFilterCategory] = useState("all");
   const filteredQuotes = userFavoriteQuotes.filter(quote => {
     if (filterCategory === "all") {
@@ -58,7 +58,7 @@ export default function Favorites() {
                     {activeUser.userId === creatorId && (
                       <button
                         className="icon-btn trash"
-                      // onClick={() => handleDelete(favorite.id)}
+                      onClick={() => removeQuote(quoteId)}
                       >
                         <BsFillTrashFill className="icon trash" />
                       </button>

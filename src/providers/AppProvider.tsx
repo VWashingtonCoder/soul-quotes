@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { ChildrenProps, Favorite, Quote, User, FormValues } from "../types";
-import { addQuote, getFavorites, getQuotes, getUsers, addUser, addFavorite, removeFavorite } from "../api/api-actions";
+import { addQuote, deleteQuote, getFavorites, getQuotes, getUsers, addUser, addFavorite, removeFavorite } from "../api/api-actions";
 
 export type AppContextType = {
   quotes: Quote[] | [];
@@ -16,11 +16,13 @@ export type AppContextType = {
   addToFavorites: (quoteId: string) => void;
   removeFromFavorites: (quoteId: string) => void;
   addNewQuote: (newQuote: FormValues) => void;
+  removeQuote: (quoteId: string) => void;
 };
 
 export const AppContext = createContext<AppContextType | object>({});
 
 const noUser = {
+  id: 0,
   userId: "",
   username: "",
   email: "",
@@ -152,6 +154,7 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     const { quote, author, category } = newQuote;
     const categoryQuotes = quotes.filter(quoteData => quoteData.category === category);
     const newQuoteData = {
+      id: quotes.length + 1,
       quoteId: `${category}-${categoryQuotes.length + 1}`,
       quote,
       author,
@@ -169,6 +172,25 @@ export const AppProvider = ({ children }: ChildrenProps) => {
         console.log(err);
         alert(errorMessage);
       });
+  }
+
+  const removeQuote = (quoteId: string) => {
+    const currentQuote = quotes.find((quote) => quote.quoteId === quoteId);
+    const id = currentQuote?.id;
+     
+
+    if (id) {
+      deleteQuote(id)
+        .then(() => {
+          refreshQuotes();
+          updateFavorites(activeUser, quotes);
+          alert("Quote removed from database");
+        })
+        .catch(err => {
+          console.log(err);
+          alert(errorMessage);
+        });
+    }
   }
 
   useEffect(() => {
@@ -195,7 +217,8 @@ export const AppProvider = ({ children }: ChildrenProps) => {
     removeActiveUser,
     addToFavorites,
     removeFromFavorites,
-    addNewQuote
+    addNewQuote,
+    removeQuote
   };
 
   return (

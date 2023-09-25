@@ -2,45 +2,6 @@ import { Favorite, Quote, User } from "../types";
 
 const BASE_URL = "http://localhost:3000";
 
-// FAVORITES
-export const getFavorites = async () => {
-    const res = await fetch(`${BASE_URL}/favorites`);
-    return res.json();
-}
-
-export const addFavorite = async (favorite: Favorite) => {
-    const res = await fetch(`${BASE_URL}/favorites`, {
-        method: 'POST',
-        headers: {
-            'Content-type': 'Application/json'
-        },
-        body: JSON.stringify(favorite)
-    });
-    return res.json();
-}
-
-export const removeFavorite = async(id: number) => {
-  const res = await fetch(`${BASE_URL}/favorites/${id}`, { method: 'DELETE' });
-  return res.json();
-}
-
-// QUOTES
-export const getQuotes = async () => {
-  const res = await fetch(`${BASE_URL}/quotes`);
-  return res.json();
-};
-
-export const addQuote = async(quote: Quote) => {
-  const res = await fetch(`${BASE_URL}/quotes`, {
-    method: 'POST',
-    headers: {
-        'Content-type': 'Application/json'
-    },
-    body: JSON.stringify(quote)
-  });
-  return res.json();
-}
-
 // USERS
 export const getUsers = async () => {
   const res = await fetch(`${BASE_URL}/users`);
@@ -57,3 +18,48 @@ export const addUser = async (newUser: User) => {
   });
   return await res.json();
 };
+
+// QUOTES
+export const getQuotes = async () => {
+  const res = await fetch(`${BASE_URL}/quoteList`);
+  return res.json();
+};
+
+export const addQuote = async(quote: Quote) => {
+  const res = await fetch(`${BASE_URL}/quoteList`, {
+    method: 'POST',
+    headers: {
+        'Content-type': 'Application/json'
+    },
+    body: JSON.stringify(quote)
+  });
+  return res.json();
+}
+
+export const deleteQuote = async(id: number) => {
+  const res = await fetch(`${BASE_URL}/quoteList/${id}`, { method: 'DELETE' });
+  return res.json();
+}
+
+// FAVORITES
+export const getFavorites = async () => {
+    const res = await fetch(`${BASE_URL}/userFavorites`);
+    return res.json();
+}
+
+export const addFavorite = async (favorite: Favorite) => {
+    const res = await fetch(`${BASE_URL}/userFavorites`, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'Application/json'
+        },
+        body: JSON.stringify(favorite)
+    });
+    return res.json();
+}
+
+export const removeFavorite = async(id: number) => {
+  const res = await fetch(`${BASE_URL}/userFavorites/${id}`, { method: 'DELETE' });
+  return res.json();
+}
+

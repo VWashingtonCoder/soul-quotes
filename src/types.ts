@@ -1,11 +1,13 @@
 export interface User {
-  ["userId"]: string;
+  ["id"]: number;
+  userId: string;
   username: string;
   email: string;
   password: string;
 }
 
 export interface Quote {
+  ["id"]: number;
   quoteId: string;
   quote: string;
   author: string;
