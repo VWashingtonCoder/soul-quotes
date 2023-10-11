@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useAppSelector, useAppDispatch } from './hooks';
+import { getQuotes } from './stateSlices/quoteSlice';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const quotes = useAppSelector((state) => state.quotes.quotes);
+  const dispatch = useAppDispatch();
+  
+  useEffect(() => {
+    dispatch(getQuotes());
+  }, [dispatch]);
+
+  console.log(quotes);
 
   return (
     <>

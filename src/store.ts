@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { quoteSlice,  } from "./stateSlices/quoteSlice";
 
 export const store = configureStore({
   reducer: {
     // ...
+
   },
 });
 
