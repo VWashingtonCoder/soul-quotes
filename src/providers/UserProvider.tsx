@@ -35,7 +35,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const getFavorites = async (userId: string) => {
     const favoritesFromServer = await getFavoritesByUserId(userId);
-    setActiveUserFavorites(favoritesFromServer);
+    const favoriteQuoteCodes = favoritesFromServer.map(
+      (favorite: Favorite) => favorite.quoteId
+    );
+    setActiveUserFavorites(favoriteQuoteCodes);
   };
 
   const checkForLocalUser = () => {
@@ -49,7 +52,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     getUsers();
     checkForLocalUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loginActiveUser = (user: User) => {
@@ -67,33 +70,35 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const addNewUser = async (newUser: User) => {
     setUsers([...users, newUser]);
     const status = await addUser(newUser);
-    if (status === 201) {
-      loginActiveUser(newUser);
-    } else {
+    if (status !== 201) {
       setUsers(users.filter((user) => user.userId !== newUser.userId));
       alert("Something went wrong. Please try again.");
-    }
+    } else loginActiveUser(newUser);
   };
 
   const addToFavorites = async (newFavorite: Favorite) => {
     setActiveUserFavorites([...activeUserFavorites, newFavorite]);
-    
+
     const status = await addFavorite(newFavorite);
 
     if (status !== 201) {
-      setActiveUserFavorites(activeUserFavorites.filter((favorite) => favorite !== newFavorite));
+      setActiveUserFavorites(
+        activeUserFavorites.filter((favorite) => favorite !== newFavorite)
+      );
       alert("Something went wrong. Please try again.");
     }
   };
 
   const deleteFromFavorites = async (id: number) => {
-    setActiveUserFavorites(activeUserFavorites.filter((favorite) => favorite.id !== id));
-    
+    setActiveUserFavorites(
+      activeUserFavorites.filter((favorite) => favorite.id !== id)
+    );
+
     const status = await deleteFavorite(id);
-    
+
     if (status !== 200) {
-        setActiveUserFavorites(activeUserFavorites);
-        alert("Something went wrong. Please try again.");
+      setActiveUserFavorites(activeUserFavorites);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -109,9 +114,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={providerValue}
-    >
+    <UserContext.Provider value={providerValue}>
       {children}
     </UserContext.Provider>
   );
