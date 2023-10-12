@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { Quote } from "../types";
 import { getAllQuotes, addQuote, deleteQuote } from "../api";
+import { toast } from "react-hot-toast";
 
 export type QuoteContextType = {
   quotes: Quote[];
@@ -27,8 +28,8 @@ export const QuoteProvider = ({ children }: { children: ReactNode }) => {
     const status = await addQuote(quote);
     if (status !== 201) {
       setQuotes(quotes.filter((quote) => quote.id !== quote.id));
-      alert("Error adding quote");
-    } else alert("Quote added successfully!");
+      toast.error("Error adding quote");
+    } else toast.success("Quote added successfully!");
   };
 
   const removeQuote = async (id: number) => {
@@ -36,8 +37,8 @@ export const QuoteProvider = ({ children }: { children: ReactNode }) => {
     const status = await deleteQuote(id);
     if (status !== 200) {
       setQuotes([...quotes]);
-      alert("Error deleting quote");
-    } else alert("Quote deleted successfully!");
+      toast.error("Error deleting quote");
+    } else toast.success("Quote deleted successfully!");
   };
 
   return (

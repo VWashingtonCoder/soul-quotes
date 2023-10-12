@@ -7,6 +7,7 @@ import {
   addFavorite,
   deleteFavorite,
 } from "../api";
+import { toast } from "react-hot-toast";
 
 export type UserContextType = {
   users: User[];
@@ -72,7 +73,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const status = await addUser(newUser);
     if (status !== 201) {
       setUsers(users.filter((user) => user.userId !== newUser.userId));
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } else loginActiveUser(newUser);
   };
 
@@ -85,7 +86,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setActiveUserFavorites(
         activeUserFavorites.filter((favorite) => favorite !== newFavorite)
       );
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
@@ -98,7 +99,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     if (status !== 200) {
       setActiveUserFavorites(activeUserFavorites);
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
