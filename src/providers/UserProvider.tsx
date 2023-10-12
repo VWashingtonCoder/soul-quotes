@@ -7,7 +7,6 @@ import {
   addFavorite,
   deleteFavorite,
 } from "../api";
-import { useNavigate } from "react-router-dom";
 
 export type UserContextType = {
   users: User[];
@@ -28,7 +27,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [activeUserFavorites, setActiveUserFavorites] = useState<Favorite[]>(
     []
   );
-  const navigate = useNavigate();
 
   const getUsers = async () => {
     const usersFromServer = await getAllUsers();
@@ -57,13 +55,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const loginActiveUser = (user: User) => {
     localStorage.setItem("activeUser", JSON.stringify(user));
     setActiveUser(user);
-    navigate("/");
+    getFavorites(user.userId);
   };
 
   const logoutActiveUser = () => {
     localStorage.removeItem("activeUser");
     setActiveUser(null);
-    navigate("/");
+    setActiveUserFavorites([]);
   };
 
   const addNewUser = async (newUser: User) => {
