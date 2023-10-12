@@ -41,10 +41,10 @@ export const deleteQuote = async (id: number) => {
     return response.status;
 }
 
-export const getAllFavorites = async () => {
-    const response = await fetch(`${API_URL}/userFavoriteQuotes`);
+export const getFavoritesByUserId = async (userId: string) => {
+    const response = await fetch(`${API_URL}/userFavoriteQuotes/?userId=${userId}`);
     return response.json();
-};
+}
 
 export const addFavorite = async (favorite: Favorite) => {
     const response = await fetch(`${API_URL}/userFavoriteQuotes`, {

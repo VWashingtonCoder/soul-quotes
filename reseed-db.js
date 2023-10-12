@@ -303,6 +303,11 @@ const data = {
             userId: 'testUser',
             quoteId: 'funny-6'
         },
+        {
+            id: 8,
+            userId: 'admin',
+            quoteId: 'funny-7'
+        }
     ]
 };
 
