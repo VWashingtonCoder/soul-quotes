@@ -1,28 +1,38 @@
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useUser } from "../context-hooks.ts";
+import logo from "../assets/images/logo.png";
+import "./styles/Header.css";
 
 function Header() {
   const { activeUser, logoutActiveUser } = useUser();
   const currentLocation = useLocation();
 
   return (
-    <div id="Header">
-      <div>
-        <img src="" alt="logo" />
+    <header className="app-header flex-between-center">
+      <div className="logo-box">
+        <img src={logo} alt="logo" />
       </div>
 
       <nav>
         <ul className="nav-links">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
           </li>
 
           <li>
             {!activeUser ? (
-              <Link to="/accounts/login">Account</Link>
+              <Link to="/accounts/login" className="nav-link">
+                Account
+              </Link>
             ) : (
-              <Link to="/" onClick={() => logoutActiveUser()}>
+              <Link
+                to="/"
+                className="nav-link"
+                onClick={() => logoutActiveUser()}
+              >
                 Logout
               </Link>
             )}
@@ -30,10 +40,13 @@ function Header() {
 
           <li>
             {activeUser ? (
-              <Link to="/favorites">Favorites</Link>
+              <Link to="/favorites" className="nav-link">
+                Favorites
+              </Link>
             ) : (
               <Link
                 to={currentLocation}
+                className="nav-link"
                 onClick={() => toast.error("Log In/Join To Access")}
               >
                 Favorites
@@ -43,10 +56,13 @@ function Header() {
 
           <li>
             {activeUser ? (
-              <Link to="/create-quote">Create Quote</Link>
+              <Link to="/create-quote" className="nav-link">
+                Create Quote
+              </Link>
             ) : (
               <Link
                 to={currentLocation}
+                className="nav-link"
                 onClick={() => toast.error("Log In/Join To Access")}
               >
                 Create Quote
@@ -55,7 +71,7 @@ function Header() {
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 }
 

@@ -1,0 +1,25 @@
+.app-header {
+  padding: 0 0 1rem;
+}
+
+.app-header .logo-box {
+  margin: 0 auto 0 0;
+  max-width: 600px;
+}
+
+.app-header .nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  right: 15%;
+}
+
+.app-header .nav-link {
+  padding: 0 1.5rem;
+  font-size: 2.25rem;
+  color: whitesmoke;
+  text-decoration: none;
+}
