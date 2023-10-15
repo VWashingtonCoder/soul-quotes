@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useUser } from "../context-hooks.ts";
 import logo from "../assets/images/logo.png";
-import "./styles/Header.css";
+import "./styles/Header.scss";
 
 function Header() {
   const { activeUser, logoutActiveUser } = useUser();
