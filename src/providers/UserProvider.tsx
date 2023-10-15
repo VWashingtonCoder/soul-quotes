@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 export type UserContextType = {
   users: User[];
   activeUser: User | null;
-  activeUserFavorites: Favorite[];
+  activeUserFavorites: string[];
   loginActiveUser: (user: User) => void;
   logoutActiveUser: () => void;
   addNewUser: (user: User) => void;
@@ -25,7 +25,7 @@ export const UserContext = createContext({} as UserContextType);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [activeUser, setActiveUser] = useState<User | null>(null);
-  const [activeUserFavorites, setActiveUserFavorites] = useState<Favorite[]>(
+  const [activeUserFavorites, setActiveUserFavorites] = useState<string[]>(
     []
   );
 
