@@ -32,7 +32,10 @@ function Header() {
             {activeUser ? (
               <Link to="/favorites">Favorites</Link>
             ) : (
-              <Link to={currentLocation} onClick={() => toast.error("Log In/Join To Access")}>
+              <Link
+                to={currentLocation}
+                onClick={() => toast.error("Log In/Join To Access")}
+              >
                 Favorites
               </Link>
             )}
@@ -42,7 +45,10 @@ function Header() {
             {activeUser ? (
               <Link to="/create-quote">Create Quote</Link>
             ) : (
-              <Link to={currentLocation} onClick={() => toast.error("Log In/Join To Access")}>
+              <Link
+                to={currentLocation}
+                onClick={() => toast.error("Log In/Join To Access")}
+              >
                 Create Quote
               </Link>
             )}
