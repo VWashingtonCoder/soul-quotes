@@ -30,7 +30,7 @@ function QuoteCard(props: QuoteCardProps) {
       <div className="card-bar flex-between-center">
         <h3 className="card-category">{category}</h3>
         <button
-          className="reload-btn"
+          className="card-btn reload"
           onClick={(e) => (e.preventDefault(), changeOneHomeQuote(idx))}
         >
           Reload
@@ -38,7 +38,7 @@ function QuoteCard(props: QuoteCardProps) {
 
         {activeUser && (
           <button
-            className="favorite-btn"
+            className="card-btn favorite"
             onClick={(e) => {
               e.preventDefault();
               isFavorite
@@ -51,7 +51,7 @@ function QuoteCard(props: QuoteCardProps) {
         )}
         {isCreator && (
           <button
-            className="delete-btn"
+            className="card-btn delete"
             onClick={(e) => (
               e.preventDefault(), removeQuote(quote.id as number)
             )}
@@ -61,8 +61,8 @@ function QuoteCard(props: QuoteCardProps) {
         )}
       </div>
       <div className="card-body">
-        <p className="quote">{text}</p>
-        <p className="author">- {author}</p>
+        <p className="card-content quote">{text}</p>
+        <p className="card-content author">- {author}</p>
       </div>
     </div>
   );
