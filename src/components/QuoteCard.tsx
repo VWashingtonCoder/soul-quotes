@@ -1,5 +1,7 @@
 import { useQuote, useUser } from "../context-hooks";
 import { Quote } from "../types";
+import { TfiReload } from "react-icons/tfi";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 type QuoteCardProps = {
   quote: Quote;
@@ -33,7 +35,7 @@ function QuoteCard(props: QuoteCardProps) {
           className="card-btn reload"
           onClick={(e) => (e.preventDefault(), changeOneHomeQuote(idx))}
         >
-          Reload
+          <TfiReload />
         </button>
 
         {activeUser && (
@@ -46,7 +48,7 @@ function QuoteCard(props: QuoteCardProps) {
                 : addToFavorites(quoteId);
             }}
           >
-            {isFavorite ? "Unfavorite" : "Favorite"}
+            {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
           </button>
         )}
         {isCreator && (
