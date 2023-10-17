@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuote, useUser } from "../context-hooks";
 import { Quote } from "../types";
 
@@ -12,13 +12,14 @@ const categories = [
 ];
 
 function Home() {
-  const { activeUser, activeUserFavorites } = useUser();
-  const { allQuotes, homeQuotes, setHomeQuotes } = useQuote();
+  const { activeUser, activeUserFavorites, addToFavorites, deleteFromFavorites } = useUser();
+  const { allQuotes, homeQuotes, setHomeQuotes, removeQuote } = useQuote();
   const [searchCategory, setSearchCategory] = useState("all");
   const categoryQuotes =
     searchCategory === "all"
       ? allQuotes
       : allQuotes.filter((quote) => quote.category === searchCategory);
+    const favoriteCodes = activeUserFavorites.map((favorite) => favorite.quoteId);
 
   const changeAllHomeQuotes = () => {
     const randomIndexes = [] as number[];
@@ -76,7 +77,8 @@ function Home() {
           {homeQuotes.map((quote, idx) => {
             const { quoteId, category, author } = quote;
             const text = quote.quote;
-            const isFavorite = activeUserFavorites.includes(quoteId);
+            const isFavorite = favoriteCodes.includes(quoteId);
+            const favoriteId = activeUserFavorites.find((favorite) => favorite.quoteId === quoteId)?.id || 0;
             const isCreator = activeUser?.userId === quote.creatorId;
 
             return (
@@ -91,13 +93,16 @@ function Home() {
                   >
                     Reload
                   </button>
-                  
+
                   {activeUser && (
                     <button
                       className="favorite-btn"
-                      onClick={(e) => (
-                        e.preventDefault(), console.log("Favorite Clicked")
-                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        isFavorite
+                          ? deleteFromFavorites(favoriteId)
+                          : addToFavorites(quoteId);
+                      }}
                     >
                       {isFavorite ? "Unfavorite" : "Favorite"}
                     </button>
@@ -106,7 +111,7 @@ function Home() {
                     <button
                       className="delete-btn"
                       onClick={(e) => (
-                        e.preventDefault(), console.log("Delete Clicked")
+                        e.preventDefault(), removeQuote(quote.id as number)
                       )}
                     >
                       Delete

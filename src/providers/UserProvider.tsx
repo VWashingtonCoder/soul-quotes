@@ -8,15 +8,16 @@ import {
   deleteFavorite,
 } from "../api";
 import { toast } from "react-hot-toast";
+import { get } from "lodash-es";
 
 export type UserContextType = {
   users: User[];
   activeUser: User | null;
-  activeUserFavorites: string[];
+  activeUserFavorites: Favorite[];
   loginActiveUser: (user: User) => void;
   logoutActiveUser: () => void;
   addNewUser: (user: User) => void;
-  addToFavorites: (favorite: Favorite) => void;
+  addToFavorites: (quoteId: string) => void;
   deleteFromFavorites: (id: number) => void;
 };
 
@@ -25,7 +26,7 @@ export const UserContext = createContext({} as UserContextType);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [activeUser, setActiveUser] = useState<User | null>(null);
-  const [activeUserFavorites, setActiveUserFavorites] = useState<string[]>(
+  const [activeUserFavorites, setActiveUserFavorites] = useState<Favorite[]>(
     []
   );
 
@@ -36,10 +37,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const getFavorites = async (userId: string) => {
     const favoritesFromServer = await getFavoritesByUserId(userId);
-    const favoriteQuoteCodes = favoritesFromServer.map(
-      (favorite: Favorite) => favorite.quoteId
-    );
-    setActiveUserFavorites(favoriteQuoteCodes);
+    setActiveUserFavorites(favoritesFromServer);
   };
 
   const checkForLocalUser = () => {
@@ -77,16 +75,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     } else loginActiveUser(newUser);
   };
 
-  const addToFavorites = async (newFavorite: Favorite) => {
-    setActiveUserFavorites([...activeUserFavorites, newFavorite]);
+  const addToFavorites = async (quoteId: string) => {
+    const userId = activeUser ? activeUser.userId : "" 
+    const newFavorite = {
+      userId,
+      quoteId
+    }
 
     const status = await addFavorite(newFavorite);
 
-    if (status !== 201) {
-      setActiveUserFavorites(
-        activeUserFavorites.filter((favorite) => favorite !== newFavorite)
-      );
-      toast.error("Something went wrong. Please try again.");
+    if (status === 201) {
+      getFavorites(userId);
     }
   };
 
@@ -97,9 +96,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const status = await deleteFavorite(id);
 
-    if (status !== 200) {
-      setActiveUserFavorites(activeUserFavorites);
-      toast.error("Something went wrong. Please try again.");
+    if (status === 200) {
+      getFavorites(activeUser ? activeUser.userId : "");
     }
   };
 
