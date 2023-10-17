@@ -39,7 +39,6 @@
 
   .card-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     margin: 0 2rem;
   }
@@ -53,7 +52,7 @@
   background-color: bisque;
   border-radius: 5px;
   color: black;
-  padding: 10px;
+  padding: 10px 10px 20px;
   margin: 20px 10px 10px;
   width: 100%;
   max-width: 500px;
@@ -86,13 +85,13 @@
     text-align: center;
   }
 
-  .card-content .quote {
-    margin: 0 7px 25px;
+  .card-content {
+    margin: 0 7px 20px;
     font-size: 1.5rem;
     font-weight: 600;
   }
 
-  .card-content .author {
+  .card-content.author {
     font-size: 1.25rem;
     font-weight: 900;
     color: blue;
