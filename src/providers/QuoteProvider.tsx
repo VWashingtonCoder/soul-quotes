@@ -4,7 +4,9 @@ import { getAllQuotes, addQuote, deleteQuote } from "../api";
 import { toast } from "react-hot-toast";
 
 export type QuoteContextType = {
-  quotes: Quote[];
+  allQuotes: Quote[];
+  homeQuotes: Quote[];
+  setHomeQuotes: (quotes: Quote[]) => void;
   addNewQuote: (quote: Quote) => void;
   removeQuote: (id: number) => void;
 };
@@ -12,11 +14,21 @@ export type QuoteContextType = {
 export const QuoteContext = createContext({} as QuoteContextType);
 
 export const QuoteProvider = ({ children }: { children: ReactNode }) => {
-  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [allQuotes, setAllQuotes] = useState<Quote[]>([]);
+  const [homeQuotes, setHomeQuotes] = useState([] as Quote[]);
 
   const getQuotes = async () => {
     const quotesFromServer = await getAllQuotes();
-    setQuotes(quotesFromServer);
+    const randomIndexes = [] as number[];
+    while (randomIndexes.length < 3) {
+      const randomIndex = Math.floor(Math.random() * quotesFromServer.length);
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      }
+    }
+    const randomQuotes = randomIndexes.map((index) => quotesFromServer[index]);
+    setAllQuotes(quotesFromServer);
+    setHomeQuotes(randomQuotes);
   };
 
   useEffect(() => {
@@ -24,19 +36,19 @@ export const QuoteProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const addNewQuote = async (quote: Quote) => {
-    setQuotes([...quotes, quote]);
+    setAllQuotes([...allQuotes, quote]);
     const status = await addQuote(quote);
     if (status !== 201) {
-      setQuotes(quotes.filter((quote) => quote.id !== quote.id));
+      setAllQuotes(allQuotes.filter((quote) => quote.id !== quote.id));
       toast.error("Error adding quote");
     } else toast.success("Quote added successfully!");
   };
 
   const removeQuote = async (id: number) => {
-    setQuotes(quotes.filter((quote) => quote.id !== id));
+    setAllQuotes(allQuotes.filter((quote) => quote.id !== id));
     const status = await deleteQuote(id);
     if (status !== 200) {
-      setQuotes([...quotes]);
+      setAllQuotes([...allQuotes]);
       toast.error("Error deleting quote");
     } else toast.success("Quote deleted successfully!");
   };
@@ -44,7 +56,9 @@ export const QuoteProvider = ({ children }: { children: ReactNode }) => {
   return (
     <QuoteContext.Provider
       value={{
-        quotes,
+        allQuotes,
+        homeQuotes,
+        setHomeQuotes,
         addNewQuote,
         removeQuote,
       }}

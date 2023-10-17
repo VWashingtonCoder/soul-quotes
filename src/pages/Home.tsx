@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuote, useUser } from "../context-hooks";
 import { Quote } from "../types";
 
@@ -13,21 +13,36 @@ const categories = [
 
 function Home() {
   const { activeUser, activeUserFavorites } = useUser();
-  const { quotes } = useQuote();
+  const { allQuotes, homeQuotes, setHomeQuotes } = useQuote();
   const [searchCategory, setSearchCategory] = useState("all");
-  const [homeQuotes, setHomeQuotes] = useState([] as Quote[]);
   const categoryQuotes =
     searchCategory === "all"
-      ? quotes
-      : quotes.filter((quote) => quote.category === searchCategory);
+      ? allQuotes
+      : allQuotes.filter((quote) => quote.category === searchCategory);
 
-  const changeAllHomeQuotes = (quotes: Quote[]) => {
-    // changes all Home quotes randomly
+  const changeAllHomeQuotes = () => {
+    const randomIndexes = [] as number[];
+    while (randomIndexes.length < 3) {
+      const randomIndex = Math.floor(Math.random() * categoryQuotes.length);
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      }
+    }
+    const randomQuotes = randomIndexes.map((index) => categoryQuotes[index]);
+    setHomeQuotes(randomQuotes);
   };  
 
-  const changeOneHomeQuote = (quote: Quote) => {
-    // changes one Home quote randomly
+  const changeOneHomeQuote = (idx: number) => {
+    const possibleQuotes = categoryQuotes.filter((quote) => !homeQuotes.includes(quote));
+    const randomIndex = Math.floor(Math.random() * possibleQuotes.length);
+    const newHomeQuotes = homeQuotes.map((quote, index) => {
+      if(index === idx) {
+        return possibleQuotes[randomIndex];
+      } else return quote;
+    });
+    setHomeQuotes(newHomeQuotes);
   };
+
 
   return (
     <section className="page home">
@@ -51,14 +66,14 @@ function Home() {
         </select>
         <button
           className="search-btn"
-          onClick={(e) => (e.preventDefault(), changeAllHomeQuotes(categoryQuotes))}
+          onClick={(e) => (e.preventDefault(), changeAllHomeQuotes())}
         >
           Search
         </button>
       </div>
-      {quotes.length > 0 ? (
+      {homeQuotes.length > 0 ? (
         <div className="card-container">
-          {categoryQuotes.map((quote) => {
+          {homeQuotes.map((quote, idx) => {
             const { quoteId, category, author } = quote;
             const text = quote.quote;
             const isFavorite = activeUserFavorites.includes(quoteId);
@@ -71,11 +86,12 @@ function Home() {
                   <button
                     className="reload-btn"
                     onClick={(e) => (
-                      e.preventDefault(), console.log("Reload Clicked")
+                      e.preventDefault(), changeOneHomeQuote(idx)
                     )}
                   >
                     Reload
                   </button>
+                  
                   {activeUser && (
                     <button
                       className="favorite-btn"
