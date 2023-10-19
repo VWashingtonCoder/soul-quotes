@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 
-function Login() {
+function LoginForm() {
   const { users, loginActiveUser } = useUser();
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -68,4 +68,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginForm;

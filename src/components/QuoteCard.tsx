@@ -9,7 +9,7 @@ type QuoteCardProps = {
   changeOneHomeQuote: (idx: number) => void;
 };
 
-function QuoteCard(props: QuoteCardProps) {
+const QuoteCard = (props: QuoteCardProps) => {
   const { quote, idx, changeOneHomeQuote } = props;
   const {
     activeUser,
@@ -68,6 +68,6 @@ function QuoteCard(props: QuoteCardProps) {
       </div>
     </div>
   );
-}
+};
 
 export default QuoteCard;

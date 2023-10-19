@@ -75,11 +75,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addToFavorites = async (quoteId: string) => {
-    const userId = activeUser ? activeUser.userId : "" 
+    const userId = activeUser ? activeUser.userId : "";
     const newFavorite = {
       userId,
-      quoteId
-    }
+      quoteId,
+    };
 
     const status = await addFavorite(newFavorite);
 

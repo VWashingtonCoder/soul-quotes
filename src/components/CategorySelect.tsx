@@ -13,11 +13,8 @@ const categories = [
   { key: "funny", label: "Funny" },
 ];
 
-function CategorySelect({
-  searchCategory,
-  setSearchCategory,
-  searchFunction,
-}: CategorySelectProps) {
+const CategorySelect = (props: CategorySelectProps) => {
+  const { searchCategory, setSearchCategory, searchFunction } = props;
   return (
     <div className="category-select">
       <label htmlFor="category">Select a category:</label>
@@ -40,6 +37,6 @@ function CategorySelect({
       </button>
     </div>
   );
-}
+};
 
 export default CategorySelect;

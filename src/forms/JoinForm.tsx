@@ -1,4 +1,4 @@
-function Join() {
+function JoinForm() {
   return (
     <>
       <h1>Soul Quotes - Join</h1>
@@ -6,4 +6,4 @@ function Join() {
   );
 }
 
-export default Join;
+export default JoinForm;

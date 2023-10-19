@@ -1,13 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { useUser } from "../context-hooks.ts";
 import logo from "../assets/images/logo.png";
-import "./styles/Header.scss";
+import HeaderLink from "../components/HeaderLink.tsx";
+import "../styles/Header.scss";
+
+const paths = [
+  { id: "home", label: "Home", pathname: "/" },
+  { id: "account", label: "Account", pathname: "/accounts/login" },
+  { id: "favorites", label: "Favorites", pathname: "/favorites" },
+  { id: "createQuote", label: "Create Quote", pathname: "/create-quote" }
+];
 
 function Header() {
-  const { activeUser, logoutActiveUser } = useUser();
-  const currentLocation = useLocation();
-
   return (
     <header className="app-header flex-between-center">
       <div className="logo-box">
@@ -15,60 +17,15 @@ function Header() {
       </div>
 
       <nav>
-        <ul className="nav-links">
-          <li>
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-
-          <li>
-            {!activeUser ? (
-              <Link to="/accounts/login" className="nav-link">
-                Account
-              </Link>
-            ) : (
-              <Link
-                to="/"
-                className="nav-link"
-                onClick={() => logoutActiveUser()}
-              >
-                Logout
-              </Link>
-            )}
-          </li>
-
-          <li>
-            {activeUser ? (
-              <Link to="/favorites" className="nav-link">
-                Favorites
-              </Link>
-            ) : (
-              <Link
-                to={currentLocation}
-                className="nav-link"
-                onClick={() => toast.error("Log In/Join To Access")}
-              >
-                Favorites
-              </Link>
-            )}
-          </li>
-
-          <li>
-            {activeUser ? (
-              <Link to="/create-quote" className="nav-link">
-                Create Quote
-              </Link>
-            ) : (
-              <Link
-                to={currentLocation}
-                className="nav-link"
-                onClick={() => toast.error("Log In/Join To Access")}
-              >
-                Create Quote
-              </Link>
-            )}
-          </li>
+        <ul className="nav-links flex-between-center">
+          {paths.map((path) => (
+            <HeaderLink
+              key={path.id}
+              id={path.id}
+              label={path.label}
+              pathname={path.pathname}
+            />
+          ))}
         </ul>
       </nav>
     </header>

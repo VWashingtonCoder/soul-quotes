@@ -7,11 +7,6 @@
   }
 
   .nav-links {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
     position: relative;
     right: 15%;
   }
@@ -19,7 +14,5 @@
   .nav-link {
     padding: 0 1.5rem;
     font-size: 2.25rem;
-    color: whitesmoke;
-    text-decoration: none;
   }
 }
