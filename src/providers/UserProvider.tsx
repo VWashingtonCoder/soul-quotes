@@ -8,7 +8,6 @@ import {
   deleteFavorite,
 } from "../api";
 import { toast } from "react-hot-toast";
-import { get } from "lodash-es";
 
 export type UserContextType = {
   users: User[];

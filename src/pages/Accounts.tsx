@@ -2,9 +2,8 @@ import { Outlet, Link } from "react-router-dom";
 
 function Accounts() {
   return (
-    <>
-      <h1>Soul Quotes - Accounts</h1>
-
+    <section className="page accounts">
+      <header>Login To Your Account Or Join Our Wonderful Community!</header>
       <nav className="nav-links">
         <ul>
           <li>
@@ -17,7 +16,7 @@ function Accounts() {
       </nav>
 
       <Outlet />
-    </>
+    </section>
   );
 }
 
