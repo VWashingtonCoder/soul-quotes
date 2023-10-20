@@ -29,7 +29,7 @@ const HeaderLink = (props: HeaderLinkProps) => {
           to={pathname}
           className={`nav-link ${
             (currentLocation === pathname ||
-              currentLocation.includes("accounts")) &&
+              (isAccountLink && currentLocation.includes("accounts"))) &&
             "active"
           }`}
         >
