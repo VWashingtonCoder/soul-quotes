@@ -14,12 +14,22 @@ function AccountNav() {
           <nav className="account-nav">
             <ul className="nav-links flex-between-center">
               <li>
-                <Link to="/accounts/login" className={`nav-link ${location === "/accounts/login" && "active"}`}>
+                <Link
+                  to="/accounts/login"
+                  className={`nav-link ${
+                    location === "/accounts/login" && "active"
+                  }`}
+                >
                   Login
                 </Link>
               </li>
               <li>
-                <Link to="/accounts/join" className={`nav-link ${location === "/accounts/join" && "active"}`}>
+                <Link
+                  to="/accounts/join"
+                  className={`nav-link ${
+                    location === "/accounts/join" && "active"
+                  }`}
+                >
                   Join
                 </Link>
               </li>

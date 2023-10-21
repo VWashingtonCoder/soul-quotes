@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useUser } from "../context-hooks";
-import { toast } from "react-hot-toast";
 import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 import { User } from "../types";
@@ -27,12 +26,17 @@ function JoinForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
-  const disabled = !username || !email || !password || !confirmPassword;
+  const disabled =
+    !username ||
+    !email ||
+    !password ||
+    !confirmPassword ||
+    Object.keys(errors).length > 0;
 
   function validateFormValues() {
     const { username, email, password, confirmPassword } = formValues;
     const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
     const errors = {} as FormValues;
 
     if (users.find((user) => user.username === username) !== undefined)
@@ -46,7 +50,7 @@ function JoinForm() {
 
     if (!passwordRegex.test(password))
       errors.password =
-        "Password must be at least 8 characters long and contain at least one letter and one number";
+        "Password must be between 8-20 characters long and contain at least one letter and one number";
 
     if (password !== confirmPassword)
       errors.confirmPassword = "Passwords do not match";
@@ -82,7 +86,6 @@ function JoinForm() {
       setFormValues(initialFormValues);
       setShowPassword(false);
       setShowConfirmPassword(false);
-      
     }
 
     setErrors(errors);
@@ -98,7 +101,7 @@ function JoinForm() {
         </h3>
       </header>
 
-      <div className="input-container">
+      <div className="inputs-group">
         <TextInput
           label="Username"
           type="text"
@@ -106,10 +109,7 @@ function JoinForm() {
           value={username}
           onChange={updateForm}
         />
-        {errors.username && <p className="error">{errors.username}</p>}
-      </div>
 
-      <div className="input-container">
         <TextInput
           label="Email"
           type="email"
@@ -117,10 +117,7 @@ function JoinForm() {
           value={email}
           onChange={updateForm}
         />
-        {errors.email && <p className="error">{errors.email}</p>}
-      </div>
 
-      <div className="input-container">
         <PasswordInput
           label="Password"
           id="password"
@@ -129,22 +126,29 @@ function JoinForm() {
           showPassword={showPassword}
           setShowPassword={handleShowPassword}
         />
-        {errors.password && <p className="error">{errors.password}</p>}
-      </div>
 
-      <div className="input-container">
         <PasswordInput
-          label="Confirm Password"
+          label="Confirm Pwd"
           id="confirmPassword"
           value={confirmPassword}
           onChange={updateForm}
           showPassword={showConfirmPassword}
           setShowPassword={handleShowPassword}
         />
-        {errors.confirmPassword && (
-          <p className="error">{errors.confirmPassword}</p>
-        )}
       </div>
+
+      {Object.keys(errors).length > 0 && (
+        <div className="errors-container">
+          <h4 className="errors-title">Please fix errors to continue:</h4>
+          <ul className="errors-list">
+            {Object.values(errors).map((error) => (
+              <li className="error" key={error}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <button type="submit" className="submit-button" disabled={disabled}>
         Join

@@ -18,7 +18,9 @@ body {
   background-image: url("./assets/images/app-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  background-position: center;
+  background-attachment: fixed;
+  height: 120vh;
 }
 
 img {
@@ -57,3 +59,8 @@ img {
   color: blanchedalmond;
 }
 
+.icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.5rem;
+}

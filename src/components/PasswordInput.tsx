@@ -1,3 +1,5 @@
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 type PasswordInputProps = {
   label: string;
   id: string;
@@ -18,13 +20,14 @@ const PasswordInput = (props: PasswordInputProps) => {
         id={id}
         value={value}
         onChange={onChange}
+        maxLength={20}
       />
-      <button
-        className="show-password"
-        name={id}
-        onClick={setShowPassword}
-      >
-        {showPassword ? "Hide" : "Show"}
+      <button className="show-password" name={id} onClick={setShowPassword}>
+        {showPassword ? (
+          <AiFillEyeInvisible className="icon" />
+        ) : (
+          <AiFillEye className="icon" />
+        )}
       </button>
     </div>
   );

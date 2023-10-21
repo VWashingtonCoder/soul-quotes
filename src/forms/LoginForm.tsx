@@ -44,22 +44,24 @@ function LoginForm() {
         </h3>
       </header>
 
-      <TextInput
-        label="Username"
-        type="text"
-        id="username"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
-      />
+      <div className="inputs-group">
+        <TextInput
+          label="Username"
+          type="text"
+          id="username"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
 
-      <PasswordInput
-        label="Password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        showPassword={showPassword}
-        setShowPassword={handleShowPassword}
-      />
+        <PasswordInput
+          label="Password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          showPassword={showPassword}
+          setShowPassword={handleShowPassword}
+        />
+      </div>
 
       <button type="submit" className="submit-button" disabled={disabled}>
         Login
