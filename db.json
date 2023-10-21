@@ -13,6 +13,27 @@
       "username": "testUser",
       "email": "tu@sq.com",
       "password": "Password0"
+    },
+    {
+      "userId": "testUser3",
+      "username": "testUser3",
+      "email": "tu3@gm.co",
+      "password": "Sexilove3",
+      "id": 3
+    },
+    {
+      "userId": "testUser2",
+      "username": "testUser2",
+      "email": "tu2@gmail.co",
+      "password": "Sexilove2",
+      "id": 4
+    },
+    {
+      "userId": "testUser4",
+      "username": "testUser4",
+      "email": "tu4@ex.co",
+      "password": "password4",
+      "id": 5
     }
   ],
   "quoteList": [
@@ -266,13 +287,45 @@
     }
   ],
   "userFavoriteQuotes": [
-    { "id": 1, "userId": "testUser", "quoteId": "inspirational-1" },
-    { "id": 2, "userId": "testUser", "quoteId": "love-3" },
-    { "id": 3, "userId": "testUser", "quoteId": "philosophy-4" },
-    { "id": 4, "userId": "testUser", "quoteId": "success-2" },
-    { "id": 5, "userId": "testUser", "quoteId": "success-5" },
-    { "id": 6, "userId": "testUser", "quoteId": "funny-3" },
-    { "id": 7, "userId": "testUser", "quoteId": "funny-6" },
-    { "id": 8, "userId": "admin", "quoteId": "funny-7" }
+    {
+      "id": 1,
+      "userId": "testUser",
+      "quoteId": "inspirational-1"
+    },
+    {
+      "id": 2,
+      "userId": "testUser",
+      "quoteId": "love-3"
+    },
+    {
+      "id": 3,
+      "userId": "testUser",
+      "quoteId": "philosophy-4"
+    },
+    {
+      "id": 4,
+      "userId": "testUser",
+      "quoteId": "success-2"
+    },
+    {
+      "id": 5,
+      "userId": "testUser",
+      "quoteId": "success-5"
+    },
+    {
+      "id": 6,
+      "userId": "testUser",
+      "quoteId": "funny-3"
+    },
+    {
+      "id": 7,
+      "userId": "testUser",
+      "quoteId": "funny-6"
+    },
+    {
+      "id": 8,
+      "userId": "admin",
+      "quoteId": "funny-7"
+    }
   ]
 }

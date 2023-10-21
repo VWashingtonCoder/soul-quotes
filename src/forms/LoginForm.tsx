@@ -19,7 +19,7 @@ function LoginForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = users.find((user) => user.userId === userId);
-    
+
     if (!user) {
       toast.error("User not found!");
       return;
@@ -30,7 +30,7 @@ function LoginForm() {
       loginActiveUser(user);
       setUserId("");
       setPassword("");
-      toast.success(`Welcome back, ${user}!`);
+      toast.success(`Welcome back, ${user.userId}!`);
     }
   };
 
@@ -44,14 +44,14 @@ function LoginForm() {
         </h3>
       </header>
 
-      <TextInput 
+      <TextInput
         label="Username"
         type="text"
         id="username"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
       />
-    
+
       <PasswordInput
         label="Password"
         id="password"

@@ -57,6 +57,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("activeUser", JSON.stringify(user));
     setActiveUser(user);
     getFavorites(user.userId);
+    window.location.href = "/";
   };
 
   const logoutActiveUser = () => {
@@ -71,7 +72,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     if (status !== 201) {
       setUsers(users.filter((user) => user.userId !== newUser.userId));
       toast.error("Something went wrong. Please try again.");
-    } else loginActiveUser(newUser);
+    } else {
+      loginActiveUser(newUser);
+      toast.success("Account created successfully!");
+    }
   };
 
   const addToFavorites = async (quoteId: string) => {

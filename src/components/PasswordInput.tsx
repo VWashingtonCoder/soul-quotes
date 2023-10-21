@@ -21,6 +21,7 @@ const PasswordInput = (props: PasswordInputProps) => {
       />
       <button
         className="show-password"
+        name={id}
         onClick={setShowPassword}
       >
         {showPassword ? "Hide" : "Show"}
