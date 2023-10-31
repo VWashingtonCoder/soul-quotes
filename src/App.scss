@@ -2,11 +2,9 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,8 +17,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  height: 120vh;
+  min-height: 100vh;
 }
 
 img {
@@ -48,6 +45,7 @@ img {
 .nav-link {
   color: whitesmoke;
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-link.active {
@@ -63,4 +61,10 @@ img {
   width: 1.75rem;
   height: 1.75rem;
   margin-right: 0.5rem;
+}
+
+.page {
+  padding-bottom: 2rem;
+  // min-width: 100vw;
+  // min-height: 62vh;
 }

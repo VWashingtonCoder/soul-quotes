@@ -1,7 +1,8 @@
 type CategorySelectProps = {
   searchCategory: string;
   setSearchCategory: (category: string) => void;
-  searchFunction: () => void;
+  searchFunction?: () => void;
+  noSearch?: boolean;
 };
 
 const categories = [
@@ -14,7 +15,12 @@ const categories = [
 ];
 
 const CategorySelect = (props: CategorySelectProps) => {
-  const { searchCategory, setSearchCategory, searchFunction } = props;
+  const { searchCategory, setSearchCategory, searchFunction, noSearch } = props;
+  const categorySearchFunction =
+    searchFunction ||
+    (() => {
+      return;
+    });
   return (
     <div className="category-select">
       <label htmlFor="category">Select a category:</label>
@@ -29,12 +35,14 @@ const CategorySelect = (props: CategorySelectProps) => {
           </option>
         ))}
       </select>
-      <button
-        className="search-btn"
-        onClick={(e) => (e.preventDefault(), searchFunction())}
-      >
-        Search
-      </button>
+      {!noSearch && (
+        <button
+          className="search-btn"
+          onClick={(e) => (e.preventDefault(), categorySearchFunction())}
+        >
+          Search
+        </button>
+      )}
     </div>
   );
 };

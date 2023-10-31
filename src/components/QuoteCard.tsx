@@ -1,7 +1,7 @@
 import { useQuote, useUser } from "../context-hooks";
 import { Quote } from "../types";
 import { TfiReload } from "react-icons/tfi";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiFillDelete } from "react-icons/ai";
 
 type QuoteCardProps = {
   quote: Quote;
@@ -57,7 +57,7 @@ const QuoteCard = (props: QuoteCardProps) => {
               e.preventDefault(), removeQuote(quote.id as number)
             )}
           >
-            Delete
+            <AiFillDelete />
           </button>
         )}
       </div>

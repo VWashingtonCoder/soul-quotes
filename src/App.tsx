@@ -6,7 +6,7 @@ import LoginForm from "./forms/LoginForm.tsx";
 import JoinForm from "./forms/JoinForm.tsx";
 import Favorites from "./pages/Favorites.tsx";
 import CreateQuote from "./pages/CreateQuote.tsx";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (
