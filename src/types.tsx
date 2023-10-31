@@ -17,6 +17,6 @@ export interface Quote {
 
 export interface Favorite {
   id?: number;
-  quoteId: string;
-  userId: string;
+  qId: string;
+  uId: string;
 }

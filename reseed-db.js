@@ -270,43 +270,43 @@ const data = {
     "userFavoriteQuotes": [
         {
             id: 1,
-            userId: 'testUser',
-            quoteId: 'inspirational-1'
+            uId: 'testUser',
+            qId: 'inspirational-1'
         },
         {
             id: 2,
-            userId: 'testUser',
-            quoteId: 'love-3'
+            uId: 'testUser',
+            qId: 'love-3'
         },
         {
             id: 3,
-            userId: 'testUser',
-            quoteId: 'philosophy-4'
+            uId: 'testUser',
+            qId: 'philosophy-4'
         },
         {
             id: 4,
-            userId: 'testUser',
-            quoteId: 'success-2'
+            uId: 'testUser',
+            qId: 'success-2'
         },
         {
             id: 5,
-            userId: 'testUser',
-            quoteId: 'success-5'
+            uId: 'testUser',
+            qId: 'success-5'
         },
         {
             id: 6,
-            userId: 'testUser',
-            quoteId: 'funny-3'
+            uId: 'testUser',
+            qId: 'funny-3'
         },
         {
             id: 7,
-            userId: 'testUser',
-            quoteId: 'funny-6'
+            uId: 'testUser',
+            qId: 'funny-6'
         },
         {
             id: 8,
-            userId: 'admin',
-            quoteId: 'funny-7'
+            uId: 'admin',
+            qId: 'funny-7'
         }
     ]
 };

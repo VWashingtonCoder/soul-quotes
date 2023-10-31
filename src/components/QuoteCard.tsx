@@ -20,11 +20,10 @@ const QuoteCard = (props: QuoteCardProps) => {
   const { removeQuote } = useQuote();
   const { quoteId, category, author } = quote;
   const text = quote.quote;
-  const favoriteCodes = activeUserFavorites.map((favorite) => favorite.quoteId);
+  const favoriteCodes = activeUserFavorites.map((favorite) => favorite.qId);
   const isFavorite = favoriteCodes.includes(quoteId);
   const favoriteId =
-    activeUserFavorites.find((favorite) => favorite.quoteId === quoteId)?.id ||
-    0;
+    activeUserFavorites.find((favorite) => favorite.qId === quoteId)?.id || 0;
   const isCreator = activeUser?.userId === quote.creatorId;
 
   return (

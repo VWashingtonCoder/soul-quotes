@@ -36,6 +36,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const getFavorites = async (userId: string) => {
     const favoritesFromServer = await getFavoritesByUserId(userId);
+    console.log(favoritesFromServer);
     setActiveUserFavorites(favoritesFromServer);
   };
 
@@ -81,8 +82,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const addToFavorites = async (quoteId: string) => {
     const userId = activeUser ? activeUser.userId : "";
     const newFavorite = {
-      userId,
-      quoteId,
+      uId: userId,
+      qId: quoteId,
     };
 
     const status = await addFavorite(newFavorite);
@@ -93,14 +94,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteFromFavorites = async (id: number) => {
-    setActiveUserFavorites(
-      activeUserFavorites.filter((favorite) => favorite.id !== id)
-    );
-
+    const userId = activeUser ? activeUser.userId : "";
     const status = await deleteFavorite(id);
 
     if (status === 200) {
-      getFavorites(activeUser ? activeUser.userId : "");
+      getFavorites(userId);
     }
   };
 

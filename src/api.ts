@@ -42,9 +42,7 @@ export const deleteQuote = async (id: number) => {
 };
 
 export const getFavoritesByUserId = async (userId: string) => {
-  const response = await fetch(
-    `${API_URL}/userFavoriteQuotes/?userId=${userId}`
-  );
+  const response = await fetch(`${API_URL}/userFavoriteQuotes/?uId=${userId}`);
   return response.json();
 };
 
@@ -54,7 +52,7 @@ export const addFavorite = async (favorite: Favorite) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ favorite }),
+    body: JSON.stringify(favorite),
   });
   return response.status;
 };
