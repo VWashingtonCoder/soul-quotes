@@ -27,8 +27,7 @@
     margin: 0 auto 2rem;
 
     label,
-    select,
-    .search-btn {
+    select {
       font-size: 1.5rem;
       font-weight: 600;
     }
@@ -37,32 +36,14 @@
       text-transform: capitalize;
     }
 
-    select,
-    .search-btn {
+    select {
       border-radius: 0.5rem;
       outline: none;
       cursor: pointer;
-    }
-
-    select {
       margin-left: 1rem;
       margin-right: 0.5rem;
       border: 1px solid #ccc;
       padding: 0.2rem;
-    }
-
-    .search-btn {
-      background-color: blanchedalmond;
-      border: none;
-      padding: 0.3rem;
-    }
-
-    .search-btn:hover {
-      background-color: dodgerblue;
-    }
-
-    .search-btn:active {
-      background-color: blanchedalmond;
     }
   }
 
@@ -114,6 +95,7 @@
       font-weight: 600;
       text-transform: capitalize;
       letter-spacing: 0.25rem;
+      margin: 0 0.25rem;
     }
 
     .delete-btn:hover {

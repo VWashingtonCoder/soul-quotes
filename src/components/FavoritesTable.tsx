@@ -40,9 +40,13 @@ const FavoritesTable = ({ favoriteList }: FavoritesTableProps) => {
               <td className="category cell">{quote.category}</td>
               <td className="actions cell">
                 {isCreator ? (
-                  <button className="table-btn delete">
-                    <AiFillDelete />
-                  </button>
+                  <AiFillDelete
+                    className="table-btn delete"
+                    onClick={
+                      () => console.log("delete")
+                      // deleteQuote(quote.id as number)
+                    }
+                  />
                 ) : (
                   <AiFillHeart
                     className="table-btn unfavorite"
