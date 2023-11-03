@@ -15,6 +15,28 @@ const initialCreateFormValues = {
 };
 
 function CreateForm() {
+  const [createFormValues, setCreateFormValues] = useState<CreateFormValues>(
+    initialCreateFormValues
+  );
+  const { quoteText, author, genre } = createFormValues;
+  const disabled = !quoteText || !author || genre === "all";
+
+  const updateForm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+
+    setCreateFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [id]: value,
+    }));
+  };
+
+  const updateGenre = (category: string) => {
+    setCreateFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      genre: category,
+    }));
+  };
+
   return (
     <form id="CreateForm">
       <header>
@@ -27,30 +49,26 @@ function CreateForm() {
           label="Quote"
           type="text"
           id="quoteText"
-        //   value={quoteText}
-        //   onChange={updateForm}
+          value={quoteText}
+          onChange={updateForm}
         />
 
         <TextInput
           label="Author"
           type="text"
           id="author"
-        //   value={author}
-        //   onChange={updateForm}
+          value={author}
+          onChange={updateForm}
         />
 
         <CategorySelect
-        //   searchCategory={genre}
-        //   setSearchCategory={setGenre}
-        //   noSearch={true}
+          searchCategory={genre}
+          setSearchCategory={updateGenre}
+          noSearch={true}
         />
       </div>
 
-      <button 
-        type="submit" 
-        className="submit-button" 
-        // disabled={disabled}
-      >
+      <button type="submit" className="submit-button" disabled={disabled}>
         Submit
       </button>
     </form>
