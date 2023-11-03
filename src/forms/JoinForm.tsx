@@ -4,14 +4,14 @@ import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 import { User } from "../types";
 
-type FormValues = {
+type JoinFormValues = {
   username: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
 
-const initialFormValues = {
+const initialJoinFormValues = {
   username: "",
   email: "",
   password: "",
@@ -20,9 +20,9 @@ const initialFormValues = {
 
 function JoinForm() {
   const { users, addNewUser } = useUser();
-  const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
+  const [formValues, setFormValues] = useState<JoinFormValues>(initialJoinFormValues);
   const { username, email, password, confirmPassword } = formValues;
-  const [errors, setErrors] = useState<FormValues>({} as FormValues);
+  const [errors, setErrors] = useState<JoinFormValues>({} as JoinFormValues);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
@@ -37,7 +37,7 @@ function JoinForm() {
     const { username, email, password, confirmPassword } = formValues;
     const emailRegex = /^\S+@\S+\.\S+$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
-    const errors = {} as FormValues;
+    const errors = {} as JoinFormValues;
 
     if (users.find((user) => user.username === username) !== undefined)
       errors.username = "Username already exists";
@@ -83,7 +83,7 @@ function JoinForm() {
         password,
       };
       addNewUser(newUser);
-      setFormValues(initialFormValues);
+      setFormValues(initialJoinFormValues);
       setShowPassword(false);
       setShowConfirmPassword(false);
     }
