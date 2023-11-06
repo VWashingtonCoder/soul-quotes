@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./pages/Header.tsx";
-import Home from "./pages/Home.tsx";
+import Header from "./pages/Header/Header.tsx";
+import Home from "./pages/Home/Home.tsx";
 import AccountNav from "./pages/AccountNav.tsx";
 import LoginForm from "./forms/LoginForm.tsx";
 import JoinForm from "./forms/JoinForm.tsx";

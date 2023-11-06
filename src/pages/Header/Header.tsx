@@ -1,12 +1,12 @@
-import logo from "../assets/images/logo.png";
-import HeaderLink from "../components/HeaderLink.tsx";
-import "../styles/Header.scss";
+import logo from "../../assets/images/logo.png";
+import HeaderLink from "../../components/HeaderLink.tsx";
+import "../../styles/Header.scss";
 
 const paths = [
   { id: "home", label: "Home", pathname: "/" },
   { id: "account", label: "Account", pathname: "/accounts/login" },
   { id: "favorites", label: "Favorites", pathname: "/favorites" },
-  { id: "createQuote", label: "Create Quote", pathname: "/create-quote" }
+  { id: "createQuote", label: "Create Quote", pathname: "/create-quote" },
 ];
 
 function Header() {

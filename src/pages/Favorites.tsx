@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUser, useQuote } from "../context-hooks";
-import CategorySelect from "../components/CategorySelect";
+import CategorySelect from "./shared/CategorySelect";
 import FavoritesTable from "../components/FavoritesTable";
 import "../styles/Favorites.scss";
 

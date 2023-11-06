@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextInput from "../components/TextInput";
-import CategorySelect from "../components/CategorySelect";
+import CategorySelect from "../pages/shared/CategorySelect";
 
 type CreateFormValues = {
   quoteText: string;
@@ -67,7 +67,7 @@ function CreateForm() {
   };
 
   return (
-    <form id="CreateForm">
+    <form id="CreateForm" onSubmit={handleSubmit}>
       <header>
         Use this form to create a new quote. Add your own quotes to the
         community and help enrich the lives of others.

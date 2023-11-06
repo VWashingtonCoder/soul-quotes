@@ -1,5 +1,5 @@
-import { useQuote, useUser } from "../context-hooks";
-import { Quote } from "../types";
+import { useQuote, useUser } from "../../context-hooks";
+import { Quote } from "../../types";
 import { TfiReload } from "react-icons/tfi";
 import { AiFillHeart, AiOutlineHeart, AiFillDelete } from "react-icons/ai";
 

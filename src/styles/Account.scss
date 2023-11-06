@@ -48,37 +48,7 @@
       }
     }
 
-    .form-input {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      grid-gap: 1rem;
-      width: 70%;
-      position: relative;
-      margin: auto;
 
-      label {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-      }
-
-      input {
-        padding: 0.5rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-        border: 1px solid blanchedalmond;
-        border-radius: 5px;
-      }
-
-      .show-password {
-        position: absolute;
-        right: 0;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-      }
-    }
 
     .errors-container {
       margin-top: 1rem;
