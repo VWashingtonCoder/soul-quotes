@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextInput from "../components/shared/FormInput";
-import CategorySelect from "../components/shared/CategorySelect";
+import TextInput from "../shared/FormInput";
+import CategorySelect from "../shared/CategorySelect";
 
 type CreateFormValues = {
   quoteText: string;
@@ -22,7 +22,11 @@ function CreateForm() {
   const { quoteText, author, genre } = createFormValues;
   const disabled = !quoteText || !author || genre === "all";
 
-  const updateForm = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+  const updateForm = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
 
     setCreateFormValues((prevFormValues) => ({
@@ -58,11 +62,11 @@ function CreateForm() {
     const newError = validateForm();
 
     if (Object.keys(newError).length === 0) {
-        console.log("Form is valid!");
-        // submitForm();
-        // resetForm();
+      console.log("Form is valid!");
+      // submitForm();
+      // resetForm();
     }
-    
+
     setError(newError);
   };
 

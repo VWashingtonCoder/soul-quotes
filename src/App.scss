@@ -68,6 +68,17 @@ img {
 }
 
 /*Shared Components Styles*/
+.navbar {
+  padding: 1rem 2rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  background-color: black;
+  border: 1px solid blanchedalmond;
+  border-radius: 5px;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
 .category-select {
   display: flex;
   justify-content: center;
