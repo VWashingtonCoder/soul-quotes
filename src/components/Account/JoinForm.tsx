@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useUser } from "../context-hooks";
-import TextInput from "../components/TextInput";
-import PasswordInput from "../components/PasswordInput";
-import { User } from "../types";
+import { useUser } from "../../context-hooks";
+import FormInput from "../shared/FormInput";
+import { User } from "../../types";
 
 type JoinFormValues = {
-  username: string;
+  [username: string]: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -18,9 +17,18 @@ const initialJoinFormValues = {
   confirmPassword: "",
 };
 
+const joinInputs = [
+  {id: "username", label: "Username", type: "text"},
+  {id: "email", label: "Email", type: "email"},
+  {id: "password", label: "Password", type: "password"},
+  {id: "confirmPassword", label: "Confirm Pwd", type: "password"},
+]
+
 function JoinForm() {
   const { users, addNewUser } = useUser();
-  const [formValues, setFormValues] = useState<JoinFormValues>(initialJoinFormValues);
+  const [formValues, setFormValues] = useState<JoinFormValues>(
+    initialJoinFormValues
+  );
   const { username, email, password, confirmPassword } = formValues;
   const [errors, setErrors] = useState<JoinFormValues>({} as JoinFormValues);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -102,44 +110,27 @@ function JoinForm() {
       </header>
 
       <div className="inputs-group">
-        <TextInput
-          label="Username"
-          type="text"
-          id="username"
-          value={username}
-          onChange={updateForm}
-        />
-
-        <TextInput
-          label="Email"
-          type="email"
-          id="email"
-          value={email}
-          onChange={updateForm}
-        />
-
-        <PasswordInput
-          label="Password"
-          id="password"
-          value={password}
-          onChange={updateForm}
-          showPassword={showPassword}
-          setShowPassword={handleShowPassword}
-        />
-
-        <PasswordInput
-          label="Confirm Pwd"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={updateForm}
-          showPassword={showConfirmPassword}
-          setShowPassword={handleShowPassword}
-        />
+        {joinInputs.map((input) => {
+          const { id, label, type } = input;
+          const value = formValues[id] as string;
+          return (
+            <FormInput
+              key={id}
+              label={label}
+              type={type}
+              id={id}
+              value={value}
+              textChange={updateForm}
+              showPassword={showPassword}
+              setShowPassword={handleShowPassword}
+            />
+          );
+        })}
       </div>
 
       {Object.keys(errors).length > 0 && (
         <div className="errors-container">
-          <h4 className="errors-title">Please fix errors to continue:</h4>
+          <p className="errors-title">Please fix errors to continue:</p>
           <ul className="errors-list">
             {Object.values(errors).map((error) => (
               <li className="error" key={error}>

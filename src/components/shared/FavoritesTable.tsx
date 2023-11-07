@@ -1,5 +1,5 @@
-import { useUser, useQuote } from "../context-hooks";
-import { Quote } from "../types";
+import { useUser, useQuote } from "../../context-hooks";
+import { Quote } from "../../types";
 import { AiFillHeart, AiFillDelete } from "react-icons/ai";
 
 type FavoritesTableProps = {

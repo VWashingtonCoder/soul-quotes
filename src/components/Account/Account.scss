@@ -1,4 +1,6 @@
 .account.page {
+  text-transform: capitalize;
+
   .loading-message {
     font-size: 3rem;
     font-weight: 700;
@@ -45,10 +47,9 @@
         font-weight: 600;
         max-width: 95%;
         margin: auto;
+        line-height: 1.3;
       }
     }
-
-
 
     .errors-container {
       margin-top: 1rem;

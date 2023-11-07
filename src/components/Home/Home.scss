@@ -7,6 +7,7 @@
   header {
     font-size: 2rem;
     font-weight: bold;
+    text-transform: capitalize;
   }
 
   .card-container {
@@ -33,39 +34,38 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    margin: 15px 0 30px;
+    width: 97%;
+    margin: 15px auto 30px;
     font-size: 1.75rem;
     font-weight: 700;
-  }
 
-  .card-category {
-    width: 200px;
-    margin: 0 30px;
-    text-transform: capitalize;
-  }
+    .card-category {
+      width: 200px;
+      text-transform: capitalize;
+    }
 
-  .card-btn {
-    background-color: transparent;
-    border: none;
-    font-size: 2rem;
-    font-weight: 700;
-    cursor: pointer;
+    .card-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 2rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
 
   .card-body {
     text-align: center;
-  }
 
-  .card-content {
-    margin: 0 7px 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
+    .card-content {
+      margin: 0 7px 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
 
-  .card-content.author {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: blue;
+    .card-content.author {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: blue;
+    }
   }
 }

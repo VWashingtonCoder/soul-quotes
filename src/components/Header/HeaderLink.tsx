@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useUser } from "../context-hooks";
+import { useUser } from "../../context-hooks";
 import { toast } from "react-hot-toast";
 
 type HeaderLinkProps = {

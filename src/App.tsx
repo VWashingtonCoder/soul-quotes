@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./pages/Header/Header.tsx";
-import Home from "./pages/Home/Home.tsx";
-import AccountNav from "./pages/AccountNav.tsx";
-import LoginForm from "./forms/LoginForm.tsx";
-import JoinForm from "./forms/JoinForm.tsx";
-import Favorites from "./pages/Favorites.tsx";
+import Header from "./components/Header/Header.tsx";
+import Home from "./components/Home/Home.tsx";
+import AccountNav from "./components/Account/AccountNav.tsx";
+import LoginForm from "./components/Account/LoginForm.tsx";
+import JoinForm from "./components/Account/JoinForm.tsx";
+import Favorites from "./components/Favorites/Favorites.tsx";
 import CreateQuote from "./pages/CreateQuote.tsx";
 import "./App.scss";
 

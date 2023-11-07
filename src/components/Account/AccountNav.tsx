@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useUser } from "../context-hooks";
-import "../styles/Account.scss";
+import { useUser } from "../../context-hooks";
+import "./Account.scss";
 
 function AccountNav() {
   const { activeUser } = useUser();

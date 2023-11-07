@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useUser, useQuote } from "../context-hooks";
-import CategorySelect from "./shared/CategorySelect";
-import FavoritesTable from "../components/FavoritesTable";
-import "../styles/Favorites.scss";
+import { useUser, useQuote } from "../../context-hooks";
+import CategorySelect from "../shared/CategorySelect";
+import FavoritesTable from "../shared/FavoritesTable";
+import "../../styles/Favorites.scss";
 
 function Favorites() {
   const { activeUserFavorites } = useUser();

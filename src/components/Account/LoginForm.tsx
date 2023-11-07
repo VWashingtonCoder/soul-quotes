@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useUser } from "../context-hooks";
+import { useUser } from "../../context-hooks";
 import { toast } from "react-hot-toast";
-import TextInput from "../components/TextInput";
-import PasswordInput from "../components/PasswordInput";
+import FormInput from "../shared/FormInput";
 
 function LoginForm() {
   const { users, loginActiveUser } = useUser();
@@ -45,19 +44,20 @@ function LoginForm() {
       </header>
 
       <div className="inputs-group">
-        <TextInput
+        <FormInput
           label="Username"
           type="text"
           id="username"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          textChange={(e) => setUserId(e.target.value)}
         />
 
-        <PasswordInput
+        <FormInput
           label="Password"
           id="password"
+          type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          textChange={(e) => setPassword(e.target.value)}
           showPassword={showPassword}
           setShowPassword={handleShowPassword}
         />

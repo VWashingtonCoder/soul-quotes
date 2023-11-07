@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextInput from "../components/TextInput";
-import CategorySelect from "../pages/shared/CategorySelect";
+import TextInput from "../components/shared/FormInput";
+import CategorySelect from "../components/shared/CategorySelect";
 
 type CreateFormValues = {
   quoteText: string;

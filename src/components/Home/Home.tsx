@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuote } from "../../context-hooks";
 import CategorySelect from "../shared/CategorySelect";
 import QuoteCard from "./QuoteCard";
-import "../../styles/Home.scss";
+import "./Home.scss";
 
 function Home() {
   const { allQuotes, homeQuotes, setHomeQuotes } = useQuote();

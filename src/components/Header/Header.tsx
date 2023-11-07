@@ -1,6 +1,5 @@
 import logo from "../../assets/images/logo.png";
-import HeaderLink from "../../components/HeaderLink.tsx";
-import "../../styles/Header.scss";
+import HeaderLink from "./HeaderLink.tsx";
 
 const paths = [
   { id: "home", label: "Home", pathname: "/" },
