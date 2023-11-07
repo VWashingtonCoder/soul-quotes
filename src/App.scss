@@ -69,10 +69,10 @@ img {
 
 /*Shared Components Styles*/
 .category-select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1.5rem auto 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem auto 2rem;
 
   label,
   select,
@@ -91,7 +91,7 @@ img {
 
   label {
     margin-right: 10px;
-    text-transform: capitalize
+    text-transform: capitalize;
   }
 
   .search-btn {
@@ -133,62 +133,62 @@ img {
   }
 }
 
-.favorites-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
+.list-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+
+  th,
+  td {
+    padding: 0.5rem 0.25rem;
+    text-align: center;
     border: 1px solid #ccc;
-
-    th,
-    td {
-      padding: 0.5rem 0.25rem;
-      text-align: center;
-      border: 1px solid #ccc;
-      vertical-align: middle;
-    }
-
-    th {
-      background-color: dodgerblue;
-      color: blanchedalmond;
-      text-transform: capitalize;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    td {
-      font-size: 1.25rem;
-      background-color: black;
-      line-height: 1.5;
-    }
-
-    td.no-quote {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    td.category {
-      text-transform: capitalize;
-      padding: 0.5rem 1rem;
-    }
-
-    .table-btn {
-      background-color: transparent;
-      color: red;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-transform: capitalize;
-      letter-spacing: 0.25rem;
-      margin: 0 0.25rem;
-    }
-
-    .delete-btn:hover {
-      color: blanchedalmond;
-    }
-
-    .delete-btn:active {
-      color: gray;
-    }
+    vertical-align: middle;
   }
+
+  th {
+    background-color: dodgerblue;
+    color: blanchedalmond;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  td {
+    font-size: 1.25rem;
+    background-color: black;
+    line-height: 1.5;
+  }
+
+  td.no-quote {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  td.category {
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+  }
+
+  .table-btn {
+    background-color: transparent;
+    color: red;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.25rem;
+    margin: 0 0.25rem;
+  }
+
+  .delete-btn:hover {
+    color: blanchedalmond;
+  }
+
+  .delete-btn:active {
+    color: gray;
+  }
+}

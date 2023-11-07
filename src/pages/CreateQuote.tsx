@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useUser, useQuote } from "../context-hooks";
 import CreateForm from "../forms/CreateForm";
 import CategorySelect from "../components/shared/CategorySelect";
-import FavoritesTable from "../components/shared/FavoritesTable";
+import FavoritesTable from "../components/shared/ListTable";
 import "../styles/CreateQuote.scss";
 
 function CreateQuote() {

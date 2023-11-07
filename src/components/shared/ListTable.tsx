@@ -2,15 +2,15 @@ import { useUser, useQuote } from "../../context-hooks";
 import { Quote } from "../../types";
 import { AiFillHeart, AiFillDelete } from "react-icons/ai";
 
-type FavoritesTableProps = {
-  favoriteList: Quote[] | [];
+type ListTableProps = {
+  list: Quote[] | [];
 };
 
-const FavoritesTable = ({ favoriteList }: FavoritesTableProps) => {
+const ListTable = ({ list }: ListTableProps) => {
   const { activeUser, deleteFromFavorites, activeUserFavorites } = useUser();
   const { deleteQuote } = useQuote();
   return (
-    <table className="favorites-table">
+    <table className="list-table">
       <thead>
         <tr>
           <th className="quote cell head">Quote</th>
@@ -20,7 +20,7 @@ const FavoritesTable = ({ favoriteList }: FavoritesTableProps) => {
         </tr>
       </thead>
       <tbody>
-        {favoriteList.length === 0 && (
+        {list.length === 0 && (
           <tr>
             <td className="no-quote cell" colSpan={4}>
               No quotes to display.
@@ -28,7 +28,7 @@ const FavoritesTable = ({ favoriteList }: FavoritesTableProps) => {
           </tr>
         )}
 
-        {favoriteList.map((quote) => {
+        {list.map((quote) => {
           const favoriteId = activeUserFavorites.find(
             (favorite) => favorite.qId === quote.quoteId
           )?.id;
@@ -62,4 +62,4 @@ const FavoritesTable = ({ favoriteList }: FavoritesTableProps) => {
   );
 };
 
-export default FavoritesTable;
+export default ListTable;

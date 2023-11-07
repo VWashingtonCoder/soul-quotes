@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useUser, useQuote } from "../../context-hooks";
 import CategorySelect from "../shared/CategorySelect";
-import FavoritesTable from "../shared/FavoritesTable";
-import "../../styles/Favorites.scss";
+import ListTable from "../shared/ListTable";
+import "./Favorites.scss";
 
 function Favorites() {
   const { activeUserFavorites } = useUser();
@@ -29,7 +29,7 @@ function Favorites() {
         noSearch={true}
       />
 
-      <FavoritesTable favoriteList={favoritesList} />
+      <ListTable list={favoritesList} />
     </section>
   );
 }
