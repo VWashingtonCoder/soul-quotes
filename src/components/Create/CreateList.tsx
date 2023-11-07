@@ -19,12 +19,16 @@ function CreateList() {
 
   return (
     <div className="creation-list">
-      <h3 className="page-subtitle">Your Creations</h3>
+      <header className="list-head">
+        Here you can view all of your contributions to the community
+      </header>
+
       <CategorySelect
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
         noSearch={true}
       />
+
       <ListTable list={creationsList} />
     </div>
   );
