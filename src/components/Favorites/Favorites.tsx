@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUser, useQuote } from "../../context-hooks";
-import CategorySelect from "../shared/CategorySelect";
+import FormInput from "../shared/FormInput";
 import ListTable from "../shared/ListTable";
 import "./Favorites.scss";
 
@@ -23,11 +23,15 @@ function Favorites() {
         can filter out your favorite quotes by quote category.
       </header>
 
-      <CategorySelect
-        searchCategory={favoritesCategory}
-        setSearchCategory={setFavoritesCategory}
-        noSearch={true}
-      />
+      <div className="category-select">
+        <FormInput 
+          label="Search by category:"
+          type="select"
+          id="category"
+          value={favoritesCategory}
+          selectChange={setFavoritesCategory}
+        />
+      </div>
 
       <ListTable list={favoritesList} />
     </section>
