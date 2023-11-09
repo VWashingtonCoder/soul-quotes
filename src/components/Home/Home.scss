@@ -8,12 +8,36 @@
     font-size: 2rem;
     font-weight: bold;
     text-transform: capitalize;
+    text-align: center;
+
+    .title {
+      font-size: 3rem;
+    }
+
+    .subtitle {
+      font-size: 2rem;
+    }
   }
 
   .card-container {
     display: flex;
     justify-content: center;
     margin: 0 2rem;
+  }
+}
+
+.category-select {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  margin: 1.5rem auto 2rem;
+
+  .form-input {
+    label,
+    select {
+      font-size: 1.75rem;
+      margin-right: 10px;
+    }
   }
 }
 

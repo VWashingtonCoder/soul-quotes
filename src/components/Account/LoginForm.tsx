@@ -34,7 +34,7 @@ function LoginForm() {
   };
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form className="form login" onSubmit={handleSubmit}>
       <header>
         <h2 className="title">Welcome Back!</h2>
         <h3 className="subtitle">

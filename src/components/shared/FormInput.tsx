@@ -7,9 +7,19 @@ type FormInputProps = {
   value: string;
   textChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   areaChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  selectChange?: (category: string) => void;
   showPassword?: boolean;
   setShowPassword?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
+const categories = [
+  { key: "all", label: "All Categories" },
+  { key: "inspirational", label: "Inspirational" },
+  { key: "love", label: "Love/Relationships" },
+  { key: "philosophy", label: "Philosophy" },
+  { key: "success", label: "Career/Success" },
+  { key: "funny", label: "Funny" },
+];
 
 const FormInput = (props: FormInputProps) => {
   const {
@@ -21,7 +31,12 @@ const FormInput = (props: FormInputProps) => {
     areaChange,
     showPassword,
     setShowPassword,
+    selectChange,
   } = props;
+
+  const setSearchCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    selectChange && selectChange(e.target.value);
+  };
 
   return (
     <div className={`form-input ${id}`}>
@@ -50,13 +65,21 @@ const FormInput = (props: FormInputProps) => {
       )}
 
       {type === "textarea" && (
-        <textarea
+        <textarea id={id} value={value} onChange={areaChange} maxLength={200} />
+      )}
+
+      {type === "select" && (
+        <select
           id={id}
+          onChange={setSearchCategory}
           value={value}
-          onChange={areaChange}
-          cols={30}
-          rows={3}
-        />
+        >
+          {categories.map((category) => (
+            <option key={category.key} value={category.key}>
+              {category.label}
+            </option>
+          ))}
+        </select>
       )}
     </div>
   );

@@ -18,11 +18,11 @@ const initialJoinFormValues = {
 };
 
 const joinInputs = [
-  {id: "username", label: "Username", type: "text"},
-  {id: "email", label: "Email", type: "email"},
-  {id: "password", label: "Password", type: "password"},
-  {id: "confirmPassword", label: "Confirm Pwd", type: "password"},
-]
+  { id: "username", label: "Username", type: "text" },
+  { id: "email", label: "Email", type: "email" },
+  { id: "password", label: "Password", type: "password" },
+  { id: "confirmPassword", label: "Confirm Pwd", type: "password" },
+];
 
 function JoinForm() {
   const { users, addNewUser } = useUser();
@@ -100,7 +100,7 @@ function JoinForm() {
   };
 
   return (
-    <form className="join" onSubmit={handleSubmit}>
+    <form className="form join" onSubmit={handleSubmit}>
       <header>
         <h2 className="title">Join Our Community!</h2>
         <h3 className="subtitle">
@@ -108,6 +108,19 @@ function JoinForm() {
           contribute to the community!
         </h3>
       </header>
+
+      {Object.keys(errors).length > 0 && (
+        <div className="errors-container">
+          <p className="errors-title">Please fix errors to continue:</p>
+          <ul className="errors-list">
+            {Object.values(errors).map((error) => (
+              <li className="error" key={error}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="inputs-group">
         {joinInputs.map((input) => {
@@ -127,19 +140,6 @@ function JoinForm() {
           );
         })}
       </div>
-
-      {Object.keys(errors).length > 0 && (
-        <div className="errors-container">
-          <p className="errors-title">Please fix errors to continue:</p>
-          <ul className="errors-list">
-            {Object.values(errors).map((error) => (
-              <li className="error" key={error}>
-                {error}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       <button type="submit" className="submit-button" disabled={disabled}>
         Join

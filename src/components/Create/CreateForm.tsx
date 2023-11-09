@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TextInput from "../shared/FormInput";
+import FormInput from "../shared/FormInput";
 import CategorySelect from "../shared/CategorySelect";
 
 type CreateFormValues = {
@@ -71,27 +71,27 @@ function CreateForm() {
   };
 
   return (
-    <form id="CreateForm" onSubmit={handleSubmit}>
+    <form className="form create" onSubmit={handleSubmit}>
       <header>
-        Use this form to create a new quote. Add your own quotes to the
+        Add your own quotes to the
         community and help enrich the lives of others.
       </header>
 
       <div className="inputs-group">
-        <TextInput
+        <FormInput
           label="Quote"
           type="textarea"
           id="quoteText"
           value={quoteText}
-          onChange={updateForm}
+          textChange={updateForm}
         />
 
-        <TextInput
+        <FormInput
           label="Author"
           type="text"
           id="author"
           value={author}
-          onChange={updateForm}
+          textChange={updateForm}
         />
 
         <CategorySelect

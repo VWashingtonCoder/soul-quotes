@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuote } from "../../context-hooks";
+import FormInput from "../shared/FormInput";
 import CategorySelect from "../shared/CategorySelect";
 import QuoteCard from "./QuoteCard";
 import "./Home.scss";
@@ -40,15 +41,27 @@ function Home() {
   return (
     <section className="page home">
       <header>
-        Welcome to Soul Quotes! This is a place to find inspiration and share
-        your own quotes.
+        <h2 className="title">Welcome to Soul Quotes!</h2>
+        <p className="subtitle">
+          This is a place to find inspiration and share your own quotes.
+        </p>
       </header>
 
-      <CategorySelect
-        searchCategory={searchCategory}
-        setSearchCategory={setSearchCategory}
-        searchFunction={changeAllHomeQuotes}
-      />
+      <div className="category-select">
+        <FormInput
+          label="Select a category:"
+          type="select"
+          id="category"
+          value={searchCategory}
+          selectChange={setSearchCategory}
+        />
+        <button
+          className="search-btn"
+          onClick={(e) => (e.preventDefault(), changeAllHomeQuotes())}
+        >
+          Search
+        </button>
+      </div>
 
       {homeQuotes.length > 0 ? (
         <div className="card-container">

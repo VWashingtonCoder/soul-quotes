@@ -7,7 +7,7 @@ function CreateQuote() {
     <div className="create page">
       <Navbar
         navList={[
-          { path: "/create-quote/form", label: "Create Quote" },
+          { path: "/create-quote/form", label: "New Quote" },
           { path: "/create-quote/list", label: "Your Creations" },
         ]}
       />

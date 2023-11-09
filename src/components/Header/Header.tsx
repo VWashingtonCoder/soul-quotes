@@ -6,7 +6,7 @@ const paths = [
   { id: "home", label: "Home", pathname: "/" },
   { id: "account", label: "Account", pathname: "/accounts/login" },
   { id: "favorites", label: "Favorites", pathname: "/favorites" },
-  { id: "createQuote", label: "Create Quote", pathname: "/create-quote/form" },
+  { id: "createQuote", label: "Create", pathname: "/create-quote/form" },
 ];
 
 function Header() {
