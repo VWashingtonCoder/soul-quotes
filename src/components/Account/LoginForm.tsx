@@ -50,7 +50,7 @@ function LoginForm() {
           type="text"
           id="username"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          textChange={(e) => setUserId(e.target.value)}
         />
 
         <PasswordInput

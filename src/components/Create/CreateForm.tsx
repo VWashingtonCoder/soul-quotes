@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuote, useUser } from "../../context-hooks";
+import ErrorsContainer from "../shared/ErrorsContainer";
 import TextInput from "../shared/TextInput";
 import SelectInput from "../shared/SelectInput";
 import { Quote } from "../../types";
@@ -23,7 +24,7 @@ function CreateForm() {
   const [createFormValues, setCreateFormValues] = useState<CreateFormValues>(
     initialCreateFormValues
   );
-  const [error, setError] = useState<CreateFormValues>({} as CreateFormValues);
+  const [errors, setErrors] = useState<CreateFormValues>({} as CreateFormValues);
   const { quoteText, author, category } = createFormValues;
 
   const updateForm = (
@@ -89,15 +90,22 @@ function CreateForm() {
       // setCreateFormValues(initialCreateFormValues);
     }
 
-    setError(newError);
+    setErrors(newError);
   };
 
   return (
     <form className="form create" onSubmit={handleSubmit}>
       <header>
-        Add your own quotes to the community and help enrich the lives of
-        others.
+        <h2 className="title">Create your own quotes</h2>
+        <p className="subtitle">Add your own quotes to the community and help enrich the lives of
+        others.</p>
+         
       </header>
+
+      {Object.keys(errors).length > 0 && (
+        <ErrorsContainer errors={Object.entries(errors)} />
+      )}
+      
 
       <div className="inputs-group">
         <TextInput
@@ -105,7 +113,7 @@ function CreateForm() {
           type="textarea"
           id="quoteText"
           value={quoteText}
-          onChange={updateForm}
+          areaChange={updateForm}
         />
 
         <TextInput
@@ -113,7 +121,7 @@ function CreateForm() {
           type="text"
           id="author"
           value={author}
-          onChange={updateForm}
+          textChange={updateForm}
         />
 
         <SelectInput
