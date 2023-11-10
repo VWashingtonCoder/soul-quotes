@@ -8,7 +8,18 @@ type ListTableProps = {
 
 const ListTable = ({ list }: ListTableProps) => {
   const { activeUser, deleteFromFavorites, activeUserFavorites } = useUser();
-  const { deleteQuote } = useQuote();
+  const { allQuotes, deleteQuote } = useQuote();
+
+  console.log(activeUserFavorites);
+
+  const handleDelete = (quoteId: string, favId: number) => {
+    console.log(quoteId, favId);
+    // const quoteToDelete = allQuotes.find((quote) => quote.quoteId === qId);
+  
+
+    // deleteFromFavorites
+  };
+
   return (
     <table className="list-table">
       <thead>
@@ -43,8 +54,7 @@ const ListTable = ({ list }: ListTableProps) => {
                   <AiFillDelete
                     className="table-btn delete"
                     onClick={
-                      () => console.log("delete")
-                      // deleteQuote(quote.id as number)
+                      () => handleDelete(quote.quoteId, favoriteId as number)
                     }
                   />
                 ) : (

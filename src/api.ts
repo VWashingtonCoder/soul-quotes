@@ -29,7 +29,7 @@ export const addQuote = async (quote: Quote) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ quote }),
+    body: JSON.stringify(quote),
   });
   return response.status;
 };

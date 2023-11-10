@@ -24,7 +24,11 @@ function CreateForm() {
   const [createFormValues, setCreateFormValues] = useState<CreateFormValues>(
     initialCreateFormValues
   );
-  const [errors, setErrors] = useState<CreateFormValues>({} as CreateFormValues);
+  const [errors, setErrors] = useState<CreateFormValues>(
+    {} as CreateFormValues
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
   const { quoteText, author, category } = createFormValues;
 
   const updateForm = (
@@ -68,44 +72,50 @@ function CreateForm() {
     );
     const lastCurrentCategoryQuoteId =
       currentCategoryQuotes[currentCategoryQuotes.length - 1].quoteId;
+    const newQuoteIdNum =
+      parseInt(
+        lastCurrentCategoryQuoteId.slice(lastCurrentCategoryQuoteId.length - 1)
+      ) + 1;
+    const quoteId = `${category}-${newQuoteIdNum}`;
+    const creatorId = activeUser ? activeUser?.userId : "";
 
-    console.log(lastCurrentCategoryQuoteId);
+    const newQuote: Quote = {
+      quoteId,
+      quote: quoteText,
+      author,
+      category,
+      creatorId,
+    };
 
-    // const newQuote = {
-    //   quoteText,
-    //   author,
-    //   category,
-    //   id: Math.floor(Math.random() * 1000000),
-    // };
-    // addNewQuote(newQuote);
+    addNewQuote(newQuote);
+    addToFavorites(quoteId);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newError = validateForm();
 
-    if (Object.keys(newError).length === 0) {
-      console.log("Form is valid!");
-      submitForm();
-      // setCreateFormValues(initialCreateFormValues);
-    }
-
     setErrors(newError);
+
+    if (Object.keys(newError).length === 0) {
+      submitForm();
+      setCreateFormValues(initialCreateFormValues);
+    }
   };
 
   return (
     <form className="form create" onSubmit={handleSubmit}>
       <header>
         <h2 className="title">Create your own quotes</h2>
-        <p className="subtitle">Add your own quotes to the community and help enrich the lives of
-        others.</p>
-         
+        <p className="subtitle">
+          Add your own quotes to the community and help enrich the lives of
+          others.
+        </p>
       </header>
 
       {Object.keys(errors).length > 0 && (
         <ErrorsContainer errors={Object.entries(errors)} />
       )}
-      
 
       <div className="inputs-group">
         <TextInput
@@ -134,7 +144,7 @@ function CreateForm() {
       <button
         type="submit"
         className="submit-button"
-        disabled={!quoteText || !author || category === "all"}
+        disabled={!quoteText || !author || category === "all" || isLoading}
       >
         Submit
       </button>

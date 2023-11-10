@@ -36,12 +36,11 @@ export const QuoteProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const addNewQuote = async (quote: Quote) => {
-    setAllQuotes([...allQuotes, quote]);
     const status = await addQuote(quote);
-    if (status !== 201) {
-      setAllQuotes(allQuotes.filter((quote) => quote.id !== quote.id));
-      toast.error("Error adding quote");
-    } else toast.success("Quote added successfully!");
+    if (status === 201) {
+      getQuotes();
+      toast.success("Quote added successfully!");
+    } else toast.error("Error adding quote");
   };
 
   const removeQuote = async (id: number) => {

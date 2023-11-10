@@ -36,7 +36,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const getFavorites = async (userId: string) => {
     const favoritesFromServer = await getFavoritesByUserId(userId);
-    console.log(favoritesFromServer);
     setActiveUserFavorites(favoritesFromServer);
   };
 
@@ -88,9 +87,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const status = await addFavorite(newFavorite);
 
-    if (status === 201) {
-      getFavorites(userId);
-    }
+    if (status === 201) getFavorites(userId);
+    else toast.error("Error adding favorite")
   };
 
   const deleteFromFavorites = async (id: number) => {
