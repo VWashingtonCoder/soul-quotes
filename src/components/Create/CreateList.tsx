@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUser, useQuote } from "../../context-hooks";
-import CategorySelect from "../shared/CategorySelect";
+import SelectInput from "../shared/SelectInput";
 import ListTable from "../shared/ListTable";
 
 function CreateList() {
@@ -17,16 +17,20 @@ function CreateList() {
           quote.category.includes(searchCategory)
         );
 
+  const updateSearchCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchCategory(e.target.value);
+  };
+
   return (
     <div className="creation-list">
       <header className="list-head">
         Here you can view all of your contributions to the community
       </header>
 
-      <CategorySelect
-        searchCategory={searchCategory}
-        setSearchCategory={setSearchCategory}
-        noSearch={true}
+      <SelectInput
+        label="Filter By Category:"
+        value={searchCategory}
+        onChange={updateSearchCategory}
       />
 
       <ListTable list={creationsList} />

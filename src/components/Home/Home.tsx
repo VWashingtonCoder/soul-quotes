@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuote } from "../../context-hooks";
 import FormInput from "../shared/FormInput";
-import CategorySelect from "../shared/CategorySelect";
+import SelectInput from "../shared/SelectInput";
 import QuoteCard from "./QuoteCard";
 import "./Home.scss";
 
@@ -12,6 +12,10 @@ function Home() {
     searchCategory === "all"
       ? allQuotes
       : allQuotes.filter((quote) => quote.category === searchCategory);
+
+  const updateSearchCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchCategory(e.target.value);
+  };
 
   const changeAllHomeQuotes = () => {
     const randomIndexes = [] as number[];
@@ -48,12 +52,10 @@ function Home() {
       </header>
 
       <div className="category-select">
-        <FormInput
+        <SelectInput
           label="Select a category:"
-          type="select"
-          id="category"
           value={searchCategory}
-          selectChange={setSearchCategory}
+          onChange={updateSearchCategory}
         />
         <button
           className="search-btn"

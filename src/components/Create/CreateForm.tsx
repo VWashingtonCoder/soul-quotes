@@ -1,17 +1,17 @@
 import { useState } from "react";
-import FormInput from "../shared/FormInput";
-import CategorySelect from "../shared/CategorySelect";
+import TextInput from "../shared/TextInput";
+import SelectInput from "../shared/SelectInput";
 
 type CreateFormValues = {
   quoteText: string;
   author: string;
-  genre: string;
+  category: string;
 };
 
 const initialCreateFormValues = {
   quoteText: "",
   author: "",
-  genre: "all",
+  category: "all",
 };
 
 function CreateForm() {
@@ -19,8 +19,8 @@ function CreateForm() {
     initialCreateFormValues
   );
   const [error, setError] = useState<CreateFormValues>({} as CreateFormValues);
-  const { quoteText, author, genre } = createFormValues;
-  const disabled = !quoteText || !author || genre === "all";
+  const { quoteText, author, category } = createFormValues;
+  const disabled = !quoteText || !author || category === "all";
 
   const updateForm = (
     e:
@@ -35,10 +35,10 @@ function CreateForm() {
     }));
   };
 
-  const updateGenre = (category: string) => {
+  const updateGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCreateFormValues((prevFormValues) => ({
       ...prevFormValues,
-      genre: category,
+      category: e.target.value,
     }));
   };
 
@@ -73,31 +73,31 @@ function CreateForm() {
   return (
     <form className="form create" onSubmit={handleSubmit}>
       <header>
-        Add your own quotes to the
-        community and help enrich the lives of others.
+        Add your own quotes to the community and help enrich the lives of
+        others.
       </header>
 
       <div className="inputs-group">
-        <FormInput
-          label="Quote"
+        <TextInput
+          label="Quote:"
           type="textarea"
           id="quoteText"
           value={quoteText}
-          textChange={updateForm}
+          onChange={updateForm}
         />
 
-        <FormInput
-          label="Author"
+        <TextInput
+          label="Author:"
           type="text"
           id="author"
           value={author}
-          textChange={updateForm}
+          onChange={updateForm}
         />
 
-        <CategorySelect
-          searchCategory={genre}
-          setSearchCategory={updateGenre}
-          noSearch={true}
+        <SelectInput
+          label="Category:"
+          value={category}
+          onChange={updateGenre}
         />
       </div>
 

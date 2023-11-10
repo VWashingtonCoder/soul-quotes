@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUser } from "../../context-hooks";
-import FormInput from "../shared/FormInput";
+import TextInput from "../shared/TextInput";
+import PasswordInput from "../shared/PasswordInput";
 import { User } from "../../types";
 
 type JoinFormValues = {
@@ -127,16 +128,38 @@ function JoinForm() {
           const { id, label, type } = input;
           const value = formValues[id] as string;
           return (
-            <FormInput
-              key={id}
-              label={label}
-              type={type}
-              id={id}
-              value={value}
-              textChange={updateForm}
-              showPassword={showPassword}
-              setShowPassword={handleShowPassword}
-            />
+            <>
+              {type === "password" ? (
+                <PasswordInput
+                  key={id}
+                  label={label}
+                  id={id}
+                  value={value}
+                  onChange={updateForm}
+                  showPassword={showPassword}
+                  setShowPassword={handleShowPassword}
+                />
+              ) : (
+                <TextInput
+                  key={id}
+                  label={label}
+                  type={type}
+                  id={id}
+                  value={value}
+                  onChange={updateForm}
+                />
+              )}
+            </>
+            // <FormInput
+            //   key={id}
+            //   label={label}
+            //   type={type}
+            //   id={id}
+            //   value={value}
+            //   textChange={updateForm}
+            //   showPassword={showPassword}
+            //   setShowPassword={handleShowPassword}
+            // />
           );
         })}
       </div>
