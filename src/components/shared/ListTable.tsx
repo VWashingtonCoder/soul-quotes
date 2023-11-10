@@ -8,16 +8,16 @@ type ListTableProps = {
 
 const ListTable = ({ list }: ListTableProps) => {
   const { activeUser, deleteFromFavorites, activeUserFavorites } = useUser();
-  const { allQuotes, deleteQuote } = useQuote();
+  const { allQuotes, removeQuote } = useQuote();
 
   console.log(activeUserFavorites);
 
-  const handleDelete = (quoteId: string, favId: number) => {
-    console.log(quoteId, favId);
-    // const quoteToDelete = allQuotes.find((quote) => quote.quoteId === qId);
-  
-
-    // deleteFromFavorites
+  const handleDelete = (quoteId: string, favoriteId: number) => {
+    const quoteToDelete = allQuotes.find((quote) => quote.quoteId === quoteId);
+    if (quoteToDelete) {
+      removeQuote(quoteToDelete.id as number);
+    }
+    deleteFromFavorites(favoriteId as number);
   };
 
   return (
@@ -53,8 +53,8 @@ const ListTable = ({ list }: ListTableProps) => {
                 {isCreator ? (
                   <AiFillDelete
                     className="table-btn delete"
-                    onClick={
-                      () => handleDelete(quote.quoteId, favoriteId as number)
+                    onClick={() =>
+                      handleDelete(quote.quoteId, favoriteId as number)
                     }
                   />
                 ) : (

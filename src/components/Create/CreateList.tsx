@@ -7,7 +7,7 @@ function CreateList() {
   const { allQuotes } = useQuote();
   const { activeUser } = useUser();
   const [searchCategory, setSearchCategory] = useState("all");
-  console.log(allQuotes)
+  // console.log(allQuotes)
   const userCreations = allQuotes.filter(
     (quote) => quote.creatorId === activeUser?.userId
   );

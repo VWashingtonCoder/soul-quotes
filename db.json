@@ -1,20 +1,5 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "userId": "admin",
-      "username": "admin",
-      "email": "admin1@localhost.com",
-      "password": "admin"
-    },
-    {
-      "id": 2,
-      "userId": "testUser",
-      "username": "testUser",
-      "email": "tu@sq.com",
-      "password": "Password0"
-    }
-  ],
+  "users": [],
   "quoteList": [
     {
       "id": 1,
@@ -273,36 +258,12 @@
       "id": 32
     },
     {
-      "quoteId": "inspirational-7",
-      "quote": "EXQuote2",
-      "author": "EXQuoteAuthor",
-      "category": "inspirational",
-      "creatorId": "testUser",
-      "id": 33
-    },
-    {
-      "quoteId": "love-7",
-      "quote": "EXQuote1",
-      "author": "EXQuoteAuthor",
-      "category": "love",
-      "creatorId": "testUser",
-      "id": 34
-    },
-    {
       "quoteId": "love-8",
       "quote": "EXQuote5",
       "author": "EXQuoteAuthor",
       "category": "love",
       "creatorId": "testUser",
       "id": 35
-    },
-    {
-      "quoteId": "inspirational-8",
-      "quote": "EXQuote6",
-      "author": "EXQuoteAuthor",
-      "category": "inspirational",
-      "creatorId": "testUser",
-      "id": 36
     }
   ],
   "userFavoriteQuotes": [
@@ -343,7 +304,7 @@
     },
     {
       "id": 8,
-      "uId": "admin",
+      "uId": "testUser",
       "qId": "funny-7"
     },
     {
@@ -365,11 +326,6 @@
       "uId": "testUser",
       "qId": "love-8",
       "id": 12
-    },
-    {
-      "uId": "testUser",
-      "qId": "inspirational-8",
-      "id": 13
     }
   ]
 }

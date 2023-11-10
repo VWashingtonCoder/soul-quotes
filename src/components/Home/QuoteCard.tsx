@@ -26,6 +26,11 @@ const QuoteCard = (props: QuoteCardProps) => {
     activeUserFavorites.find((favorite) => favorite.qId === quoteId)?.id || 0;
   const isCreator = activeUser?.userId === quote.creatorId;
 
+  const handleQuoteDelete = (id: number) => {
+    removeQuote(id)
+    changeOneHomeQuote(idx)
+  };
+
   return (
     <div className="quote-card" key={quoteId}>
       <div className="card-bar flex-between-center">
@@ -54,7 +59,7 @@ const QuoteCard = (props: QuoteCardProps) => {
           <button
             className="card-btn delete"
             onClick={(e) => (
-              e.preventDefault(), removeQuote(quote.id as number)
+              e.preventDefault(), handleQuoteDelete(quote.id as number)
             )}
           >
             <AiFillDelete />
