@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUser } from "../../context-hooks";
+import ErrorsContainer from "../shared/ErrorsContainer";
 import TextInput from "../shared/TextInput";
 import PasswordInput from "../shared/PasswordInput";
 import { User } from "../../types";
@@ -111,22 +112,14 @@ function JoinForm() {
       </header>
 
       {Object.keys(errors).length > 0 && (
-        <div className="errors-container">
-          <p className="errors-title">Please fix errors to continue:</p>
-          <ul className="errors-list">
-            {Object.values(errors).map((error) => (
-              <li className="error" key={error}>
-                {error}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ErrorsContainer errors={Object.entries(errors)} />
       )}
 
       <div className="inputs-group">
         {joinInputs.map((input) => {
           const { id, label, type } = input;
           const value = formValues[id] as string;
+
           return (
             <>
               {type === "password" ? (
@@ -146,20 +139,10 @@ function JoinForm() {
                   type={type}
                   id={id}
                   value={value}
-                  onChange={updateForm}
+                  textChange={updateForm}
                 />
               )}
             </>
-            // <FormInput
-            //   key={id}
-            //   label={label}
-            //   type={type}
-            //   id={id}
-            //   value={value}
-            //   textChange={updateForm}
-            //   showPassword={showPassword}
-            //   setShowPassword={handleShowPassword}
-            // />
           );
         })}
       </div>

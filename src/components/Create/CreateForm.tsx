@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useQuote, useUser } from "../../context-hooks";
 import TextInput from "../shared/TextInput";
 import SelectInput from "../shared/SelectInput";
+import { Quote } from "../../types";
 
 type CreateFormValues = {
   quoteText: string;
@@ -15,12 +17,14 @@ const initialCreateFormValues = {
 };
 
 function CreateForm() {
+  const { addNewQuote, allQuotes } = useQuote();
+  const { activeUser, addToFavorites } = useUser();
+
   const [createFormValues, setCreateFormValues] = useState<CreateFormValues>(
     initialCreateFormValues
   );
   const [error, setError] = useState<CreateFormValues>({} as CreateFormValues);
   const { quoteText, author, category } = createFormValues;
-  const disabled = !quoteText || !author || category === "all";
 
   const updateForm = (
     e:
@@ -57,14 +61,32 @@ function CreateForm() {
     return newError;
   }
 
+  const submitForm = () => {
+    const currentCategoryQuotes = allQuotes.filter(
+      (quote) => quote.category === category
+    );
+    const lastCurrentCategoryQuoteId =
+      currentCategoryQuotes[currentCategoryQuotes.length - 1].quoteId;
+
+    console.log(lastCurrentCategoryQuoteId);
+
+    // const newQuote = {
+    //   quoteText,
+    //   author,
+    //   category,
+    //   id: Math.floor(Math.random() * 1000000),
+    // };
+    // addNewQuote(newQuote);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newError = validateForm();
 
     if (Object.keys(newError).length === 0) {
       console.log("Form is valid!");
-      // submitForm();
-      // resetForm();
+      submitForm();
+      // setCreateFormValues(initialCreateFormValues);
     }
 
     setError(newError);
@@ -101,7 +123,11 @@ function CreateForm() {
         />
       </div>
 
-      <button type="submit" className="submit-button" disabled={disabled}>
+      <button
+        type="submit"
+        className="submit-button"
+        disabled={!quoteText || !author || category === "all"}
+      >
         Submit
       </button>
     </form>
