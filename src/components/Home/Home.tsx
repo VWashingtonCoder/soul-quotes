@@ -13,10 +13,6 @@ function Home() {
       ? allQuotes
       : allQuotes.filter((quote) => quote.category === searchCategory);
 
-  const updateSearchCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchCategory(e.target.value);
-  };
-
   const changeAllHomeQuotes = () => {
     const randomIndexes = [] as number[];
     while (randomIndexes.length < 3) {
@@ -55,7 +51,7 @@ function Home() {
         <SelectInput
           label="Select a category:"
           value={searchCategory}
-          onChange={updateSearchCategory}
+          onChange={(e) => setSearchCategory(e.target.value)}
         />
         <button
           className="search-btn"

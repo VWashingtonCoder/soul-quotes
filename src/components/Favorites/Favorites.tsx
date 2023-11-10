@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUser, useQuote } from "../../context-hooks";
-import FormInput from "../shared/FormInput";
+import SelectInput from "../shared/SelectInput";
 import ListTable from "../shared/ListTable";
 import "./Favorites.scss";
 
@@ -24,12 +24,10 @@ function Favorites() {
       </header>
 
       <div className="category-select">
-        <FormInput 
+        <SelectInput
           label="Search by category:"
-          type="select"
-          id="category"
           value={favoritesCategory}
-          selectChange={setFavoritesCategory}
+          onChange={(e) => setFavoritesCategory(e.target.value)}
         />
       </div>
 

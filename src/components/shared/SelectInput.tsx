@@ -14,10 +14,10 @@ const categories = [
 ];
 
 const SelectInput = (props: SelectInputProps) => {
-  const { label, id, value, onChange } = props;
+  const { label, value, onChange } = props;
 
   return (
-    <div className={`form-input select ${id}`}>
+    <div className={`form-input select`}>
       <label htmlFor="category">{label}</label>
       <select id="category" onChange={onChange} value={value}>
         {categories.map((category) => (
