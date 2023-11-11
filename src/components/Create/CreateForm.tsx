@@ -27,7 +27,6 @@ function CreateForm() {
   const [errors, setErrors] = useState<CreateFormValues>(
     {} as CreateFormValues
   );
-  const [isLoading, setIsLoading] = useState(false);
 
   const { quoteText, author, category } = createFormValues;
 
@@ -144,7 +143,7 @@ function CreateForm() {
       <button
         type="submit"
         className="submit-button"
-        disabled={!quoteText || !author || category === "all" || isLoading}
+        disabled={!quoteText || !author || category === "all"}
       >
         Submit
       </button>

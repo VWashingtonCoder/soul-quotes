@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuote } from "../../context-hooks";
-import FormInput from "../shared/FormInput";
 import SelectInput from "../shared/SelectInput";
 import QuoteCard from "./QuoteCard";
 import "./Home.scss";
