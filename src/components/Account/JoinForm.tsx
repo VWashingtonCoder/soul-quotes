@@ -112,7 +112,10 @@ function JoinForm() {
       </header>
 
       {Object.keys(errors).length > 0 && (
-        <ErrorsContainer errors={Object.entries(errors)} />
+        <ErrorsContainer
+          key="error-container"
+          errors={Object.entries(errors)}
+        />
       )}
 
       <div className="inputs-group">

@@ -3,7 +3,6 @@ type ErrorsProps = {
 };
 
 const ErrorsContainer = ({ errors }: ErrorsProps) => {
-  console.log(errors);
   return (
     <div className="errors-container">
       <p className="errors-title">Please fix errors to continue:</p>

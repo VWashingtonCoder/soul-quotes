@@ -10,8 +10,6 @@ const ListTable = ({ list }: ListTableProps) => {
   const { activeUser, deleteFromFavorites, activeUserFavorites } = useUser();
   const { allQuotes, removeQuote } = useQuote();
 
-  console.log(activeUserFavorites);
-
   const handleDelete = (quoteId: string, favoriteId: number) => {
     const quoteToDelete = allQuotes.find((quote) => quote.quoteId === quoteId);
     if (quoteToDelete) {
