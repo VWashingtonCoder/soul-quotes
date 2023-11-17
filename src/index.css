@@ -127,3 +127,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+/*Custom*/
+body {
+  background-image: url("./assets/images/app-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  max-height: 130vh;
+  min-height: 100vh;
+  
+}
+
+img {
+  width: 100%;
+}
