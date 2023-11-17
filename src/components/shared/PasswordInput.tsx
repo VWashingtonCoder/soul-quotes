@@ -21,6 +21,7 @@ const PasswordInput = (props: PasswordInputProps) => {
         value={value}
         onChange={onChange}
         maxLength={20}
+        autoComplete="off"
       />
       <button className="show-password" name={id} onClick={setShowPassword} type="button">
         {showPassword ? (

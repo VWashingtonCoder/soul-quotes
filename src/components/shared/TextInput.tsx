@@ -14,9 +14,20 @@ const TextInput = (props: TextInputProps) => {
     <div className={`form-input text ${id}`}>
       <label htmlFor={id}>{label}</label>
       {type !== "textarea" ? (
-        <input type={type} id={id} value={value} onChange={textChange} />
+        <input
+          type={type}
+          id={id}
+          value={value}
+          onChange={textChange}
+          autoComplete="off"
+        />
       ) : (
-        <textarea id={id} value={value} onChange={areaChange} />
+        <textarea
+          id={id}
+          value={value}
+          onChange={areaChange}
+          autoComplete="off"
+        />
       )}
     </div>
   );
