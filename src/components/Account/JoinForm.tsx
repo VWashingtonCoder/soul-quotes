@@ -40,8 +40,7 @@ function JoinForm() {
     !username ||
     !email ||
     !password ||
-    !confirmPassword ||
-    Object.keys(errors).length > 0;
+    !confirmPassword;
 
   function validateFormValues() {
     const { username, email, password, confirmPassword } = formValues;
