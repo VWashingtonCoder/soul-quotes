@@ -22,7 +22,7 @@ const PasswordInput = (props: PasswordInputProps) => {
         onChange={onChange}
         maxLength={20}
       />
-      <button className="show-password" name={id} onClick={setShowPassword}>
+      <button className="show-password" name={id} onClick={setShowPassword} type="button">
         {showPassword ? (
           <AiFillEyeInvisible className="icon" />
         ) : (
